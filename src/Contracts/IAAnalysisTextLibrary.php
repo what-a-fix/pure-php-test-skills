@@ -3,24 +3,18 @@
 
 namespace Whatafix\TextTagger\Contracts;
 
+//librairie
+//tableau de mots
+$word = ['Masculin','Fémiinin', 'Enfant'];
+//tableau de tags
+$tags = ['Men', 'Woman', 'family', 'child' ];
 
-const TAGS_POLITESSE_FEMININ = ['Courtoisie', 'Fémiinin'];
-const TAGS_POLITESSE_MASCULIN = ['Courtois', 'Masculin'];
-const TAGS_POLITESSE_ENFANT = ['Familier', 'Enfant'];
-const TAGS_POLITESSE_UNDIFIND = ['Phrase trop complexe'];
-
-class IAAnalysisTextLibrary
+class IAAnalysisTextLibrary extends TextTaggerInterface
 {
     public function analyseText($text)
     {
-        if ($text == 'Bonjour Madame') {
-            return TAGS_POLITESSE_FEMININ;
-        } elseif ($text == 'Bonjour Monsieur') {
-            return TAGS_POLITESSE_MASCULIN;
-        } elseif ($text == 'Salut gamin') {
-            return TAGS_POLITESSE_ENFANT;
-        } elseif ($text == '') {
-            return TAGS_POLITESSE_UNDIFIND;
-        }
+        $text = "Bonjour Madame, Bonjour Monsieur, que puis faire pour vous aider ?";
+        $text = preg_replace("/\b(regex)\b/i", '<span style="background:#5fc9f6">\1</span>', $text);
+        echo $text;
     }
 }

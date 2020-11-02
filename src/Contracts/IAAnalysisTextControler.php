@@ -4,10 +4,9 @@ namespace Whatafix\TextTagger\Contracts;
 
 use Whatafix\TextTagger\Contracts\IAAnalysisTextLibrary;
 
-include('.:/src/Contracts/IAAnalysisTextLibrary');
-include 'IAAnalysisTextControler.php';
 
-class IAAnalysisTextControler{
+class IAAnalysisTextControler
+{
 
     public function getAnalyseText(IAAnalysisTextLibrary $iaAnalysisTextLibrary){
             

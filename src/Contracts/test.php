@@ -4,12 +4,13 @@ use Whatafix\TextTagger\Contracts\IAAnalysisTextControler;
 use Whatafix\TextTagger\Contracts\IAAnalysisTextLibrary;
 
 class Test {
-
-    function testAnalyseText() {
+    
+    //test de la fonction analyse Text de la librairie 
+    public function testAnalyseText() {
 
         $library = new IAAnalysisTextLibrary;
-        $this->library->assertEquals($library);
+        $this->library->expectOutputString('Word');
 
-        return $library;
+        print 'wiz';
     }
 }
