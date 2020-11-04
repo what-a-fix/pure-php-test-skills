@@ -1,16 +1,19 @@
 <?php
 
-use Whatafix\TextTagger\Contracts\IAAnalysisTextControler;
-use Whatafix\TextTagger\Contracts\IAAnalysisTextLibrary;
+namespace Whatafix\TextTagger\Contracts;
 
-class Test {
+use PHPUnit\Framework\TestCase;
+use Whatafix\TextTagger\Contracts\AnalysisTextLibrary;
+
+class Test extends TestCase
+{ 
     
-    //test de la fonction analyse Text de la librairie 
+    //test la fonction analyse Text de la librairie 
     public function testAnalyseText() {
 
-        $library = new IAAnalysisTextLibrary;
-        $this->library->expectOutputString('Word');
+        $library = new AnalysisTextLibrary;
+        $this->library->getTags('Bonjour Madame avez vous des enfants, êtes vous en famille');
 
-        print 'wiz';
+        return $library;
     }
 }

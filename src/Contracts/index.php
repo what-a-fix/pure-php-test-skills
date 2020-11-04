@@ -1,9 +1,8 @@
 <?php
 
-use Whatafix\TextTagger\Contracts\IAAnalysisTextControler;
-use Whatafix\TextTagger\Contracts\IAAnalysisTextLibrary;
+use Whatafix\TextTagger\Contracts\AnalysisTextControler;
+use Whatafix\TextTagger\Contracts\AnalysisTextLibrary;
+use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
-
-$data = new IAAnalysisTextControler();
-$library = new IAAnalysisTextLibrary();
-$data->getAnalyseText($library);
+$text = new TextTaggerInterface;
+$text->getTags('Bonjour Madame');
