@@ -7,7 +7,7 @@ require './TextTaggerInterface.php';
 //création de la librairie 
 
 //implementation de l'interface TextTagerInterface en utilisant toute ses méthodes 
-
+//problème  avec l'implementation de l'interface 
 class AnalysisTextLibrary implements TextTaggerInterface
 {
     //cette méthode analyse le texte en découpant les phrases mot par mot 
