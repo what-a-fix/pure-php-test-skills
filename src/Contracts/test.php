@@ -2,18 +2,18 @@
 
 namespace Whatafix\TextTagger\Contracts;
 
-use PHPUnit\Framework\TestCase;
+
+
 use Whatafix\TextTagger\Contracts\AnalysisTextLibrary;
 
-class Test extends TestCase
+class Test
 { 
     
-    //test la fonction analyse Text de la librairie 
+    //test la fonction analyseText de la librairie 
     public function testAnalyseText() {
 
         $library = new AnalysisTextLibrary;
         $this->library->getTags('Bonjour Madame avez vous des enfants, êtes vous en famille');
-
         return $library;
     }
 }

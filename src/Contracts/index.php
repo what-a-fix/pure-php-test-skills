@@ -2,7 +2,13 @@
 
 use Whatafix\TextTagger\Contracts\AnalysisTextControler;
 use Whatafix\TextTagger\Contracts\AnalysisTextLibrary;
-use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
-$text = new TextTaggerInterface;
-$text->getTags('Bonjour Madame');
+require ('./TextTaggerInterface.php');
+require './AnalysisTextControler.php';
+require './AnalysisTextLibrary.php';
+
+
+$data = new AnalysisTextControler();
+$data->split('');
+var_dump($data);
+
