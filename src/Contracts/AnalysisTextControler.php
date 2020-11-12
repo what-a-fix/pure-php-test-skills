@@ -8,9 +8,8 @@ use Whatafix\TextTagger\Contracts\AnalysisTextLibrary;
 
 class AnalysisTextControler
 {
-    public function split(string $text)
+    public function split(string $text):object
     {
-
      $text = new AnalysisTextLibrary();
      $text->getTags('Bonjour Madame, Bonjour Monsieur');
      return $text;

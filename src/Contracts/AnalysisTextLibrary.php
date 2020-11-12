@@ -14,7 +14,7 @@ use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
     const tags_Enfant = ['Bonjour petit'];
 
-class AnalysisTextLibrary 
+class AnalysisTextLibrary implements TextTaggerInterface
 {
     //cette méthode analyse le texte en découpant les phrases mot par mot 
     //en vérifiant que ses mots sont associés dans mon tableau associatif à mes tags
