@@ -1,9 +1,25 @@
 # This is my library
 
-## What I make
+## TTD
 
-I try to create a library who give a word when you write a sentence, a controler who call this library and use it and i make a unitary test.
+Développements Pilotés par les Tests
 
-## For the end
+## Lancer les tests
 
-It's the first time who i have make a library. Thanks you for your opportunity.
+Tapes juste cette commande dans ton shell
+
+> composer tests
+
+## Concentres-toi sur une chose
+
+La classe TextTagger est son implémenation, modifie-là jusqu'à ce que tes test passe au vert.
+
+Effectue un travail itératif :
+
+A.1) - tu modifie cette classe TextTagger
+A.2) - tu lance les tests
+
+Des erreurs ?
+
+Oui => On reppart à A.1
+Non => C'est fini :)
