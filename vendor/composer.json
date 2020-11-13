@@ -1,0 +1,15 @@
+{
+    "name": "whatafix/text-tagger",
+    "description": "Libray that tag text according to it's content",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Whatafix\\TextTagger\\": "src"
+        }
+    }
+}

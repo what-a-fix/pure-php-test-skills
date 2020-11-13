@@ -14,4 +14,4 @@ class AnalysisTextControler
      $text->getTags('Bonjour Madame, Bonjour Monsieur');
      return $text;
     }
-}
+}return;
