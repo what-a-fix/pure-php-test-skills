@@ -111,7 +111,7 @@ class TextTagger implements TextTaggerInterface
                 //plural management
                 $isException = preg_match('/ai?l\b/', $value);
                 if ($isException) {
-                    $value = '('.$value.'[xs]?|'. preg_replace('/([a-z-]+)(ai?l)\b/', '$1aux', $value) . ')';
+                    $value = preg_replace('/([a-z-]+)(ai?l)\b/', '$1($2s?|aux)', $value);
                 } else {
                     $value .= '[xs]?';
                 }
@@ -130,4 +130,3 @@ class TextTagger implements TextTaggerInterface
         return $tags;
     }
 }
-
