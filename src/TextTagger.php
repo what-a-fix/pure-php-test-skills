@@ -1,8 +1,12 @@
 <?php
+
 namespace Whatafix\TextTagger;
+
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
+
 class TextTagger implements TextTaggerInterface
 {
+
     const TAG_LIST = [
         'family'=>[
             'fils',
@@ -110,8 +114,9 @@ class TextTagger implements TextTaggerInterface
      */
     public function getTags(string $text): array
     {
-        $tags = array();
+        $tags = [];
         $countTag = [];
+
         foreach ( self::TAG_LIST as $tag=>$values) {
             foreach ($values as $value) {
                 //plural management
