@@ -33,7 +33,8 @@ class TextTagger implements TextTaggerInterface
             'ballade',
             'sortie',
             'promener',
-            'promenade'
+            'promenade',
+            'parc'
         ],
         'bathroom'=>[
             'lavabo',
@@ -71,7 +72,7 @@ class TextTagger implements TextTaggerInterface
             'parole',
             'récréation',
             'rentrée',
-            'vacances',
+            'vacance',
             'exemple',
             'instruction',
             'livre',
@@ -97,7 +98,8 @@ class TextTagger implements TextTaggerInterface
             'travail'
         ],
         'train'=>[
-            'rail'
+            'rail',
+            'locomotive'
         ]
     ];
 
@@ -109,6 +111,7 @@ class TextTagger implements TextTaggerInterface
     public function getTags(string $text): array
     {
         $tags = array();
+        $countTag = [];
         foreach ( self::TAG_LIST as $tag=>$values) {
             foreach ($values as $value) {
                 //plural management
