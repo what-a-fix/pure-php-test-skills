@@ -115,9 +115,10 @@ class TextTagger implements TextTaggerInterface
     public function getTags(string $text): array
     {
         $tags = [];
-        $countTag = [];
 
         foreach ( self::TAG_LIST as $tag=>$values) {
+            $countMatch = 0;
+
             foreach ($values as $value) {
                 //plural management
                 $isException = preg_match('/ai?l\b/', $value);
@@ -131,8 +132,8 @@ class TextTagger implements TextTaggerInterface
                 $value = preg_replace('/[- ]/', '( |-)', $value);
 
                 $regex = '/\b'.$value.'\b/iu';
-                $hasMatched = preg_match($regex, $text);
-                if ($hasMatched) {
+                $countMatch += preg_match_all($regex, $text);
+                if ($countMatch>1) {
                     $tags[] = $tag;
                     break;
                 }
