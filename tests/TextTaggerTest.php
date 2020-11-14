@@ -2,6 +2,7 @@
 namespace Whatafix\Test;
 use PHPUnit\Framework\TestCase;
 use Whatafix\TextTagger\TextTagger;
+use Whatafix\TextTagger\TextTaggerV2;
 
 class TextTaggerTest extends TestCase
 {
@@ -10,13 +11,13 @@ class TextTaggerTest extends TestCase
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->textTagger = new TextTagger();
+        $this->textTagger = new TextTaggerV2();
     }
 
     public function testInstance(): void
     {
         $class = get_class($this->textTagger);
-        $this->assertEquals("Whatafix\TextTagger\TextTagger", $class);
+        $this->assertEquals("Whatafix\TextTagger\TextTaggerV2", $class);
     }
 
     public function testTextTaggerGetTagsBasic(): void
@@ -95,10 +96,10 @@ class TextTaggerTest extends TestCase
 
     public function testDetectMultipleWords(): void
     {
-        $str = "grand-parent";
+        $str = "porte-serviettes";
         $tags = $this->textTagger->getTags($str);
         $this->assertEquals(1,sizeof($tags));
-        $str = "grand parent";
+        $str = "porte serviettes";
         $tags = $this->textTagger->getTags($str);
         $this->assertEquals(1,sizeof($tags));
     }
