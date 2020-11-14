@@ -1,6 +1,6 @@
 <?php
 
-namespace Whatafix\Test;
+namespace Whatafix\TextTagger\Test;
 
 use PHPUnit\Framework\TestCase;
 use Whatafix\TextTagger\TextTagger;
@@ -28,9 +28,6 @@ class TextTaggerTest extends TestCase
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1,$tags);
         $str = "faute grammaire math livre";
-        $tags = $this->textTagger->getTags($str);
-        $this->assertCount(1,$tags);
-        $str = "parent";
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1,$tags);
         $str = "faute grammaire";
