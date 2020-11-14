@@ -58,8 +58,8 @@ const LABEL_LIST = [
         ['travail', 3] //=>-'il' + 'aux'
     ],
     'boat' => [
-        ['bateau', 1] //addd 'x'
+        ['bateau', 1] //add 'x'
     ]
 ];
 ````
-then add the corresponding plural to match for a finer control. 
+Then add the corresponding plural to match for a finer control. 
