@@ -112,7 +112,8 @@ class TextTagger implements TextTaggerInterface
      */
     public function getTags(string $text): array
     {
-        $tags = array();
+        $tags = [];
+
         foreach ( self::TAG_LIST as $tag=>$values) {
             foreach ($values as $value) {
                 //plural management
