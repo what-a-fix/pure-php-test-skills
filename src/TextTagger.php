@@ -95,6 +95,9 @@ class TextTagger implements TextTaggerInterface
             'examen',
             'oral',
             'travail'
+        ],
+        'train'=>[
+            'rail'
         ]
     ];
 

@@ -82,6 +82,9 @@ class TextTaggerTest extends TestCase
         $str = "travaux";
         $tags = $this->textTagger->getTags($str);
         $this->assertTrue(["school"]==$tags);
+        $str = "rails";
+        $tags = $this->textTagger->getTags($str);
+        $this->assertTrue(["train"]==$tags);
     }
 
     public function testMultibyteString(): void
