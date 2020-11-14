@@ -1,8 +1,12 @@
 <?php
+
 namespace Whatafix\TextTagger;
+
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
+
 class TextTagger implements TextTaggerInterface
 {
+
     const TAG_LIST = [
         'family'=>[
             'fils',
