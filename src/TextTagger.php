@@ -7,105 +7,25 @@ use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 class TextTagger implements TextTaggerInterface
 {
 
-    const TAG_LIST = [
-        'family'=>[
-            'fils',
-            'fille',
-            'parent',
-            'mère',
-            'père',
-            'maman',
-            'papa',
-            'grand-parent',
-            'grand-mère',
-            'grand-père',
-            'tante',
-            'oncle',
-            'neveu',
-            'nièce',
-            'cousin',
-            'cousine',
-            'épouse',
-            'mari',
-            'beau-frère',
-            'belle-soeur',
-            'frère',
-            'soeur',
-            'enfant'
-        ],
-        'walk'=>[
-            'ballade',
-            'sortie',
-            'promener',
-            'promenade',
-            'parc'
-        ],
-        'bathroom'=>[
-            'lavabo',
-            'baignoire',
-            'douche',
-            'toilette',
-            'savon',
-            'shampoing',
-            'pharmacie',
-            'porte-serviettes',
-            'bain'
-        ],
-        'school'=>[
-            'école',
-            'faute',
-            'grammaire',
-            'éducation',
-            'punition',
-            'bulletin',
-            'institutrice',
-            'étude',
-            'problème',
-            'cours',
-            'classe',
-            'devoir',
-            'élève',
-            'instituteur',
-            'leçon',
-            'savoir',
-            'science',
-            'apprentissage',
-            'cahier',
-            'mot',
-            'écolier',
-            'parole',
-            'récréation',
-            'rentrée',
-            'vacance',
-            'exemple',
-            'instruction',
-            'livre',
-            'page',
-            'stylo',
-            'math',
-            'physique',
-            'chimie',
-            'collège',
-            'lycée',
-            'formation',
-            'scolaire',
-            'enseignement',
-            'correction',
-            'poésie',
-            'poème',
-            'dictionnaire',
-            'rédaction',
-            'note',
-            'question',
-            'examen',
-            'oral',
-            'travail'
-        ],
-        'train'=>[
-            'rail',
-            'locomotive'
-        ]
-    ];
+    /**
+     * tag array
+     * @var array
+     */
+    private $tagList;
+
+    public function __construct(array $tagList = [])
+    {
+        $this->tagList = $tagList;
+    }
+
+    /**
+     * Get file content by filename in src/label/
+     * @param string $fileName
+     */
+    public function fetchTagList(string $fileName): void
+    {
+        $this->tagList = include __DIR__ . '/label/' . $fileName;
+    }
 
     /**
      * Return the tags for a specific text
@@ -116,7 +36,7 @@ class TextTagger implements TextTaggerInterface
     {
         $tags = [];
 
-        foreach ( self::TAG_LIST as $tag=>$values) {
+        foreach ( $this->tagList as $tag=>$values) {
             $countMatch = 0;
 
             foreach ($values as $value) {

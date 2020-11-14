@@ -12,6 +12,7 @@ class TextTaggerTest extends TestCase
     protected function setUp(): void
     {
         $this->textTagger = new TextTagger();
+        $this->textTagger->fetchTagList('label.php');
     }
 
     public function testTextTaggerGetTagsBasic(): void
