@@ -30,14 +30,14 @@ class ArrayEqualsByValue extends Constraint
             $this->fail($other, $description);
         }
 
-        foreach ($other as $value) {
-            if (!in_array($value, $this->expected)) {
-                if ($returnResult) {
-                    return false;
-                }
+        $isSame = empty(array_diff($other, $this->expected));
 
-                $this->fail($other, $description);
+        if (!$isSame) {
+            if ($returnResult) {
+                return false;
             }
+
+            $this->fail($other, $description);
         }
 
         return true;
