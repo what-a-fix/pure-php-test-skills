@@ -1,0 +1,24 @@
+<?php
+
+$author = '@author Dev applicant';
+$link = '@link https://github.com/what-a-fix/pure-php-test-skills';
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->in(__DIR__)
+;
+
+$config = PhpCsFixer\Config::create()
+    ->setRiskyAllowed(false)
+    ->setRules([
+        '@PhpCsFixer' => true,
+        'php_unit_test_class_requires_covers' => false,
+        'header_comment' => [
+            'header' => implode("\n", [$author, $link]),
+            'comment_type' => 'PHPDoc',
+        ],
+    ])
+    ->setFinder($finder)
+;
+
+return $config;

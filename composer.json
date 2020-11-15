@@ -8,7 +8,28 @@
     },
     "autoload": {
         "psr-4": {
-            "Whatafix\\TextTagger\\": "src"
+            "Whatafix\\TextTagger\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4",
+        "phpstan/phpstan": "^0.12.55",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Whatafix\\TextTagger\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "tests": "vendor/bin/phpunit --color=always tests",
+        "phpstan": "vendor/bin/phpstan analyse --level=max src",
+        "php-cs-fix": "vendor/bin/php-cs-fixer fix",
+        "php-cs-dry-run": "vendor/bin/php-cs-fixer fix --dry-run",
+        "tests-pipe": [
+            "@php-cs-dry-run",
+            "@phpstan",
+            "@tests"
+        ]
     }
 }
