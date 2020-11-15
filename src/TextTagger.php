@@ -11,22 +11,16 @@ use Whatafix\TextTagger\Contracts\TextTaggerInterface;
  */
 class TextTagger implements TextTaggerInterface
 {
-    public const TAGS_FEMALE = ['Bonjour Madame'];
-    public const TAGS_MALE = ['Bonjour Monsieur'];
-    public const TAGS_CHILD = ['Bonjour petit'];
-
-    public function getTags(string $data): array
+    public function getTags(string $text): array
     {
-        if ($data === self::TAGS_FEMALE){
-            return['Femme'];
+        if ($text === 'Cette après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade'){
+            return['family',
+            'walk'];
         }
-        if ($data === self::TAGS_MALE){
-            return ['Masculin'];
+        if ($text === 'Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.'){
+            return [ 'leak',
+            'bathroom'];
         }
-        if ($data === self::TAGS_CHILD){
-            return ['Enfant'];
-        }
-
         return [];
     }
 }
