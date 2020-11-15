@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @author Florian Rowehy
- * @link https://github.com/Florian-Rowehy
+ * @author Dev applicant
+ * @link https://github.com/what-a-fix/pure-php-test-skills
  */
 
 return [
