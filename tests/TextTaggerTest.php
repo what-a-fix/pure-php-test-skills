@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
+
 namespace Whatafix\TextTagger\Test;
 
 use Whatafix\TextTagger\Test\Custom\TestCase;
 use Whatafix\TextTagger\TextTagger;
 
+/**
+ * @internal
+ */
 class TextTaggerTest extends TestCase
 {
     private $textTagger;
@@ -21,92 +29,92 @@ class TextTaggerTest extends TestCase
 
     public function testTextTaggerGetTagsBasic(): void
     {
-        $str = "Cette après-midi je suis allé manger une glace avec mes parents et grand-parents au parc. 
-        Puis nous avons fait une grande ballade au parc.";
+        $str = 'Cette après-midi je suis allé manger une glace avec mes parents et grand-parents au parc. 
+        Puis nous avons fait une grande ballade au parc.';
         $tags = $this->textTagger->getTags($str);
-        $this->assertArrayHasSameValues(["family", "walk"], $tags);
+        $this->assertArrayHasSameValues(['family', 'walk'], $tags);
     }
 
     public function testNoDuplicateTags(): void
     {
-        $str = "fils fille parent neveu";
+        $str = 'fils fille parent neveu';
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1, $tags);
-        $str = "faute grammaire math livre";
+        $str = 'faute grammaire math livre';
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1, $tags);
-        $str = "faute grammaire";
+        $str = 'faute grammaire';
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1, $tags);
     }
 
     public function testNoTagIfOneMatch(): void
     {
-        $str = "fille vacance";
+        $str = 'fille vacance';
         $tags = $this->textTagger->getTags($str);
         $this->assertEmpty($tags);
     }
 
     public function testDetectDuplicateWords(): void
     {
-        $str = "fils fils";
+        $str = 'fils fils';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
+        $this->assertEquals(['family'], $tags);
     }
 
     public function testIgnoreCase(): void
     {
-        $str = "Ballade TANTe lavaBO sorTie PARENT douche faute Grammaire";
+        $str = 'Ballade TANTe lavaBO sorTie PARENT douche faute Grammaire';
         $tags = $this->textTagger->getTags($str);
-        $this->assertArrayHasSameValues(["family", "walk", "bathroom", "school"], $tags);
+        $this->assertArrayHasSameValues(['family', 'walk', 'bathroom', 'school'], $tags);
     }
 
     public function testIgnoresPunctuation(): void
     {
         $str = "././/devoir-!::savoir;[enfant},oncle;ballade-;~promenade~#lavabo{pharmacie]='";
         $tags = $this->textTagger->getTags($str);
-        $this->assertArrayHasSameValues(["family", "walk", "bathroom", "school"], $tags);
+        $this->assertArrayHasSameValues(['family', 'walk', 'bathroom', 'school'], $tags);
     }
 
     public function testDetectPlural(): void
     {
-        $str = "parents  filles";
+        $str = 'parents  filles';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
-        $str = "neveux nièces";
+        $this->assertEquals(['family'], $tags);
+        $str = 'neveux nièces';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
-        $str = "oraux cours";
+        $this->assertEquals(['family'], $tags);
+        $str = 'oraux cours';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["school"], $tags);
-        $str = "travaux cahiers";
+        $this->assertEquals(['school'], $tags);
+        $str = 'travaux cahiers';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["school"], $tags);
-        $str = "rails locomotives";
+        $this->assertEquals(['school'], $tags);
+        $str = 'rails locomotives';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["train"], $tags);
+        $this->assertEquals(['train'], $tags);
     }
 
     public function testMultibyteString(): void
     {
-        $str = "élève école";
+        $str = 'élève école';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["school"], $tags);
-        $str = "leçon étude";
+        $this->assertEquals(['school'], $tags);
+        $str = 'leçon étude';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["school"], $tags);
+        $this->assertEquals(['school'], $tags);
     }
 
     public function testDetectMultipleWords(): void
     {
-        $str = "porte-serviettes porte serviettes";
+        $str = 'porte-serviettes porte serviettes';
         $tags = $this->textTagger->getTags($str);
         $this->assertCount(1, $tags);
     }
 
     public function testReturnEmptyArray(): void
     {
-        $str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        $str = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Praesent eu sem at justo dapibus dignissim in in nunc. 
         Morbi et tortor nec metus finibus placerat. 
         Morbi ornare eget lectus non ultrices. 
@@ -120,28 +128,28 @@ class TextTaggerTest extends TestCase
         Curabitur scelerisque condimentum fermentum. 
         In porttitor ligula ac dolor consequat egestas. 
         Duis sed justo scelerisque, malesuada erat ut, porttitor mi. 
-        Duis molestie nibh at molestie fringilla.";
+        Duis molestie nibh at molestie fringilla.';
         $tags = $this->textTagger->getTags($str);
         $this->assertEmpty($tags);
     }
 
     public function testVariableMinMatch(): void
     {
-        $str = "parents  filles";
+        $str = 'parents  filles';
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
+        $this->assertEquals(['family'], $tags);
 
-        $str = "neveux";
+        $str = 'neveux';
         $tags = $this->textTagger->getTags($str);
         $this->assertEmpty($tags);
 
         $this->textTagger->setMinMatch(1);
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
+        $this->assertEquals(['family'], $tags);
 
         $this->textTagger->setMinMatch(-1);
         $tags = $this->textTagger->getTags($str);
-        $this->assertEquals(["family"], $tags);
+        $this->assertEquals(['family'], $tags);
 
         $this->textTagger->setMinMatch(2);
     }

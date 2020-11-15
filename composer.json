@@ -8,8 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Whatafix\\TextTagger\\": "src/",
-            "Whatafix\\TextTagger\\Test\\": "tests/"
+            "Whatafix\\TextTagger\\": "src/"
         }
     },
     "require-dev": {
@@ -21,5 +20,16 @@
         "psr-4": {
             "Whatafix\\TextTagger\\Test\\": "tests/"
         }
+    },
+    "scripts": {
+        "tests": "vendor/bin/phpunit --color=always tests",
+        "phpstan": "vendor/bin/phpstan analyse src",
+        "php-cs-fix": "vendor/bin/php-cs-fixer fix",
+        "php-cs-dry-run": "vendor/bin/php-cs-fixer fix --dry-run",
+        "tests-pipe": [
+            "@php-cs-dry-run",
+            "@phpstan",
+            "@tests"
+        ]
     }
 }

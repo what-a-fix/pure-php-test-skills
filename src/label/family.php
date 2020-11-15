@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
+
 return [
     'fils',
     'fille',
@@ -23,5 +28,5 @@ return [
     'belle-soeur',
     'frère',
     'soeur',
-    'enfant'
+    'enfant',
 ];

@@ -1,0 +1,24 @@
+<?php
+
+$author = '@author Florian Rowehy';
+$link = '@link https://github.com/Florian-Rowehy';
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->in(__DIR__)
+;
+
+$config = PhpCsFixer\Config::create()
+    ->setRiskyAllowed(false)
+    ->setRules([
+        '@PhpCsFixer' => true,
+        'php_unit_test_class_requires_covers' => false,
+        'header_comment' => [
+            'header' => implode("\n", [$author, $link]),
+            'comment_type' => 'PHPDoc',
+        ],
+    ])
+    ->setFinder($finder)
+;
+
+return $config;

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
+
 return [
     'école',
     'faute',
@@ -48,5 +53,5 @@ return [
     'question',
     'examen',
     'oral',
-    'travail'
+    'travail',
 ];

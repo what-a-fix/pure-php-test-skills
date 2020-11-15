@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
 
 namespace Whatafix\TextTagger\Test\Custom;
 
@@ -7,6 +11,9 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Whatafix\TextTagger\Test\Custom\Constraint\ArrayEqualsByValue;
 
+/**
+ * @internal
+ */
 class TestCase extends PHPUnitTestCase
 {
     public static function assertArrayHasSameValues($expected, $actual, string $message = '')

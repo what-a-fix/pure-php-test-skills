@@ -1,20 +1,26 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
+
 namespace Whatafix\TextTagger;
 
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
 class TextTagger implements TextTaggerInterface
 {
-
     /**
-     * tag array
+     * tag array.
+     *
      * @var array
      */
     private $tagList;
 
     /**
-     * nb of minimum match
+     * nb of minimum match.
+     *
      * @var int
      */
     private $minMatch;
@@ -26,13 +32,12 @@ class TextTagger implements TextTaggerInterface
     }
 
     /**
-     * Add labels list
-     * @param string $filePath
+     * Add labels list.
      */
     public function addThemeTags(string $filePath): void
     {
         $hasExtension = preg_match('/.php$/', $filePath);
-        $fullPath = $hasExtension? $filePath : $filePath.'.php';
+        $fullPath = $hasExtension ? $filePath : $filePath.'.php';
         if (!file_exists($fullPath)) {
             return;
         }
@@ -45,15 +50,15 @@ class TextTagger implements TextTaggerInterface
     }
 
     /**
-     * Return the tags for a specific text
-     * @param string $text
+     * Return the tags for a specific text.
+     *
      * @return string[]
      */
     public function getTags(string $text): array
     {
         $tags = [];
 
-        foreach ($this->tagList as $tag=>$values) {
+        foreach ($this->tagList as $tag => $values) {
             $countMatch = 0;
 
             foreach ($values as $value) {
@@ -70,25 +75,28 @@ class TextTagger implements TextTaggerInterface
 
                 $regex = '/\b'.$value.'\b/iu';
                 $countMatch += preg_match_all($regex, $text);
-                if ($countMatch>=$this->minMatch) {
+                if ($countMatch >= $this->minMatch) {
                     $tags[] = $tag;
+
                     break;
                 }
             }
         }
+
         return $tags;
     }
 
     /**
-     * Set nb of minimum match to label the string
-     * @param int $minMatch
+     * Set nb of minimum match to label the string.
+     *
      * @return $this
      */
     public function setMinMatch(int $minMatch): self
     {
-        if ($minMatch>0) {
+        if ($minMatch > 0) {
             $this->minMatch = $minMatch;
         }
+
         return $this;
     }
 }

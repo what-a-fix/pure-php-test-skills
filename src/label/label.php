@@ -1,7 +1,12 @@
 <?php
 
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
+
 return [
-    'family'=>[
+    'family' => [
         'fils',
         'fille',
         'parent',
@@ -24,16 +29,16 @@ return [
         'belle-soeur',
         'frère',
         'soeur',
-        'enfant'
+        'enfant',
     ],
-    'walk'=>[
+    'walk' => [
         'ballade',
         'sortie',
         'promener',
         'promenade',
-        'parc'
+        'parc',
     ],
-    'bathroom'=>[
+    'bathroom' => [
         'lavabo',
         'baignoire',
         'douche',
@@ -42,9 +47,9 @@ return [
         'shampoing',
         'pharmacie',
         'porte-serviettes',
-        'bain'
+        'bain',
     ],
-    'school'=>[
+    'school' => [
         'école',
         'faute',
         'grammaire',
@@ -92,10 +97,10 @@ return [
         'question',
         'examen',
         'oral',
-        'travail'
+        'travail',
     ],
-    'train'=>[
+    'train' => [
         'rail',
-        'locomotive'
-    ]
+        'locomotive',
+    ],
 ];

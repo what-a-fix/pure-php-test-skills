@@ -1,5 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
+
+/**
+ * @author Florian Rowehy
+ * @link https://github.com/Florian-Rowehy
+ */
 
 namespace Whatafix\TextTagger\Test\Custom\Constraint;
 
@@ -18,7 +24,7 @@ class ArrayEqualsByValue extends Constraint
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
@@ -43,16 +49,16 @@ class ArrayEqualsByValue extends Constraint
         return true;
     }
 
-    protected function matches($other): bool
-    {
-        return is_array($other);
-    }
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toString(): string
     {
         return 'arrays has same values';
+    }
+
+    protected function matches($other): bool
+    {
+        return is_array($other);
     }
 }
