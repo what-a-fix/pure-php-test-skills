@@ -2,7 +2,7 @@
 
 namespace Whatafix\TextTagger\Test;
 
-use PHPUnit\Framework\TestCase;
+use Whatafix\TextTagger\Test\Custom\TestCase;
 use Whatafix\TextTagger\TextTagger;
 
 class TextTaggerTest extends TestCase
@@ -25,7 +25,7 @@ class TextTaggerTest extends TestCase
         $str = "Cette après-midi je suis allé manger une glace avec mes parents et grand-parents au parc. 
         Puis nous avons fait une grande ballade au parc.";
         $tags = $this->textTagger->getTags($str);
-        $this->assertEmpty(array_diff(["family", "walk"], $tags));
+        $this->assertArrayHasSameValues(["family", "walk"], $tags);
     }
 
     public function testNoDuplicateTags(): void
@@ -59,14 +59,14 @@ class TextTaggerTest extends TestCase
     {
         $str = "Ballade TANTe lavaBO sorTie PARENT douche faute Grammaire";
         $tags = $this->textTagger->getTags($str);
-        $this->assertEmpty(array_diff(["family", "walk", "bathroom", "school"], $tags));
+        $this->assertArrayHasSameValues(["family", "walk", "bathroom", "school"], $tags);
     }
 
     public function testIgnoresPunctuation(): void
     {
         $str = "././/devoir-!::savoir;[enfant},oncle;ballade-;~promenade~#lavabo{pharmacie]='";
         $tags = $this->textTagger->getTags($str);
-        $this->assertEmpty(array_diff(["family", "walk", "bathroom", "school"], $tags));
+        $this->assertArrayHasSameValues(["family", "walk", "bathroom", "school"], $tags);
     }
 
     public function testDetectPlural(): void
