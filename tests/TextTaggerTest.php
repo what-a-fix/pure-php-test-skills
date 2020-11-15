@@ -120,4 +120,25 @@ class TextTaggerTest extends TestCase
         $tags = $this->textTagger->getTags($str);
         $this->assertEmpty($tags);
     }
+
+    public function testVariableMinMatch(): void
+    {
+        $str = "parents  filles";
+        $tags = $this->textTagger->getTags($str);
+        $this->assertEquals(["family"], $tags);
+
+        $str = "neveux";
+        $tags = $this->textTagger->getTags($str);
+        $this->assertEmpty($tags);
+
+        $this->textTagger->setMinMatch(1);
+        $tags = $this->textTagger->getTags($str);
+        $this->assertEquals(["family"], $tags);
+
+        $this->textTagger->setMinMatch(-1);
+        $tags = $this->textTagger->getTags($str);
+        $this->assertEquals(["family"], $tags);
+
+        $this->textTagger->setMinMatch(2);
+    }
 }
