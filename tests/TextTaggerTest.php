@@ -12,7 +12,11 @@ class TextTaggerTest extends TestCase
     protected function setUp(): void
     {
         $this->textTagger = new TextTagger();
-        $this->textTagger->fetchTagList('label.php');
+        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/family.php');
+        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/walk');
+        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/bathroom.php');
+        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/school');
+        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
     }
 
     public function testTextTaggerGetTagsBasic(): void

@@ -26,12 +26,20 @@ class TextTagger implements TextTaggerInterface
     }
 
     /**
-     * Get file content by filename in src/label/
-     * @param string $fileName
+     * Add labels list
+     * @param string $filePath
      */
-    public function fetchTagList(string $fileName): void
+    public function addThemeTags(string $filePath): void
     {
-        $this->tagList = include __DIR__ . '/label/' . $fileName;
+        $hasExtension = preg_match('/.php$/', $filePath);
+        $fullPath = $hasExtension? $filePath : $filePath.'.php';
+        if (!file_exists($fullPath))
+            return;
+        $fileContent = include $fullPath;
+        if (!is_array($fileContent) || empty($fileContent))
+            return;
+        $tag = basename($fullPath, '.php');
+        $this->tagList[$tag] = $fileContent;
     }
 
     /**
