@@ -13,9 +13,16 @@ class TextTagger implements TextTaggerInterface
      */
     private $tagList;
 
+    /**
+     * nb of minimum match
+     * @var int
+     */
+    private $minMatch;
+
     public function __construct(array $tagList = [])
     {
         $this->tagList = $tagList;
+        $this->minMatch = 2;
     }
 
     /**
@@ -53,12 +60,25 @@ class TextTagger implements TextTaggerInterface
 
                 $regex = '/\b'.$value.'\b/iu';
                 $countMatch += preg_match_all($regex, $text);
-                if ($countMatch>1) {
+                if ($countMatch>=$this->minMatch) {
                     $tags[] = $tag;
                     break;
                 }
             }
         }
         return $tags;
+    }
+
+    /**
+     * Set nb of minimum match to label the string
+     * @param int $minMatch
+     * @return $this
+     */
+    public function setMinMatch(int $minMatch): self
+    {
+        if ($minMatch>0) {
+            $this->minMatch = $minMatch;
+        }
+        return $this;
     }
 }
