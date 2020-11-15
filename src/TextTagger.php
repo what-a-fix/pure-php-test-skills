@@ -73,6 +73,9 @@ class TextTagger implements TextTaggerInterface
                 //hyphen/space management
                 $value = preg_replace('/[- ]/', '( |-)', $value);
 
+                if (!is_string($value)) {
+                    throw new \LogicException(sprintf('$value must be a string, %s given', gettype($value)));
+                }
                 $regex = '/\b'.$value.'\b/iu';
                 $countMatch += preg_match_all($regex, $text);
                 if ($countMatch >= $this->minMatch) {
