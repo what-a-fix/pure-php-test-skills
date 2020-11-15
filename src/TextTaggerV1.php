@@ -1,6 +1,8 @@
 <?php
 namespace Whatafix\TextTagger;
+
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
+
 class TextTaggerV1 implements TextTaggerInterface
 {
     const TAG_MATCHES = ['fils'=>'family',
@@ -105,8 +107,9 @@ class TextTaggerV1 implements TextTaggerInterface
         for ($i=0; $i<$nbWord; $i++) {
             $word = strtolower($words[$i]);
             $wordLength = strlen($word);
-            if ($wordLength<3)
+            if ($wordLength<3) {
                 continue;
+            }
 
             $tag = self::TAG_MATCHES[$word]?? null;
 

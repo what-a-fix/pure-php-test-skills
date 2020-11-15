@@ -2,8 +2,6 @@
 
 namespace Whatafix\TextTagger\Test;
 
-
-
 use Whatafix\TextTagger\Test\Custom\TestCase;
 
 class AssertArraysTest extends TestCase

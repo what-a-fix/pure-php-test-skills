@@ -33,11 +33,13 @@ class TextTagger implements TextTaggerInterface
     {
         $hasExtension = preg_match('/.php$/', $filePath);
         $fullPath = $hasExtension? $filePath : $filePath.'.php';
-        if (!file_exists($fullPath))
+        if (!file_exists($fullPath)) {
             return;
+        }
         $fileContent = include $fullPath;
-        if (!is_array($fileContent) || empty($fileContent))
+        if (!is_array($fileContent) || empty($fileContent)) {
             return;
+        }
         $tag = basename($fullPath, '.php');
         $this->tagList[$tag] = $fileContent;
     }
@@ -51,7 +53,7 @@ class TextTagger implements TextTaggerInterface
     {
         $tags = [];
 
-        foreach ( $this->tagList as $tag=>$values) {
+        foreach ($this->tagList as $tag=>$values) {
             $countMatch = 0;
 
             foreach ($values as $value) {

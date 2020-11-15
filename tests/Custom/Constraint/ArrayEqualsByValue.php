@@ -3,7 +3,6 @@
 
 namespace Whatafix\TextTagger\Test\Custom\Constraint;
 
-
 use PHPUnit\Framework\Constraint\Constraint;
 
 class ArrayEqualsByValue extends Constraint

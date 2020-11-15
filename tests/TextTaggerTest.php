@@ -17,7 +17,6 @@ class TextTaggerTest extends TestCase
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/bathroom.php');
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/school');
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/family.php');
-
     }
 
     public function testTextTaggerGetTagsBasic(): void
@@ -32,13 +31,13 @@ class TextTaggerTest extends TestCase
     {
         $str = "fils fille parent neveu";
         $tags = $this->textTagger->getTags($str);
-        $this->assertCount(1,$tags);
+        $this->assertCount(1, $tags);
         $str = "faute grammaire math livre";
         $tags = $this->textTagger->getTags($str);
-        $this->assertCount(1,$tags);
+        $this->assertCount(1, $tags);
         $str = "faute grammaire";
         $tags = $this->textTagger->getTags($str);
-        $this->assertCount(1,$tags);
+        $this->assertCount(1, $tags);
     }
 
     public function testNoTagIfOneMatch(): void
