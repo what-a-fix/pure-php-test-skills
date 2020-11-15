@@ -32,4 +32,4 @@ jobs:
               run: (rm composer.lock || true) &&  composer update
 
             - name: Run test suite
-              run: composer test-pipe
+              run: composer tests-pipe

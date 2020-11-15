@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author Florian Rowehy
- * @link https://github.com/Florian-Rowehy
- */
 
 namespace Whatafix\TextTagger\Contracts;
 

@@ -1,7 +1,7 @@
 <?php
 
-$author = '@author Florian Rowehy';
-$link = '@link https://github.com/Florian-Rowehy';
+$author = '@author Dev applicant';
+$link = '@link https://github.com/what-a-fix/pure-php-test-skills';
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
