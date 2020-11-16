@@ -20,12 +20,11 @@ class TextTaggerTest extends TestCase
     protected function setUp(): void
     {
         $this->textTagger = new TextTagger();
-        $this->textTagger->addThemeTagsXml('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
-        //$this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
-        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/walk');
-        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/bathroom.php');
-        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/school');
-        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/family.php');
+        $this->textTagger->addThemeTagsXml(__DIR__.'/../src/label/train');
+        $this->textTagger->addThemeTags(__DIR__.'/../src/label/walk');
+        $this->textTagger->addThemeTags(__DIR__.'/../src/label/bathroom.php');
+        $this->textTagger->addThemeTags(__DIR__.'/../src/label/school');
+        $this->textTagger->addThemeTags(__DIR__.'/../src/label/family.php');
     }
 
     public function testTextTaggerGetTagsBasic(): void
