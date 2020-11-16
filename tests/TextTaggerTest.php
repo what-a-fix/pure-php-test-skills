@@ -20,7 +20,8 @@ class TextTaggerTest extends TestCase
     protected function setUp(): void
     {
         $this->textTagger = new TextTagger();
-        $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
+        $this->textTagger->addThemeTagsXml('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
+        //$this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/train');
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/walk');
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/bathroom.php');
         $this->textTagger->addThemeTags('/mnt/d/wildCodeSchool/entretien/pure-php-test-skills/src/label/school');

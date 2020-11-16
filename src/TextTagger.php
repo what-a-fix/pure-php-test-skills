@@ -32,7 +32,7 @@ class TextTagger implements TextTaggerInterface
     }
 
     /**
-     * Add labels list.
+     * Add labels list from php file.
      */
     public function addThemeTags(string $filePath): void
     {
@@ -47,6 +47,30 @@ class TextTagger implements TextTaggerInterface
         }
         $tag = basename($fullPath, '.php');
         $this->tagList[$tag] = $fileContent;
+    }
+
+    /**
+     * Add labels list from xml file.
+     */
+    public function addThemeTagsXml(string $filePath): void
+    {
+        $hasExtension = preg_match('/.xml$/', $filePath);
+        $fullPath = $hasExtension ? $filePath : $filePath.'.xml';
+        $fileContent = file_get_contents($fullPath);
+        if (!$fileContent) {
+            return;
+        }
+        $xmlParser = new \SimpleXMLElement($fileContent);
+        $tag = (string) ($xmlParser->tag[0]);
+        $words = [];
+        foreach ($xmlParser->value as $word) {
+            $words[] = (string) $word;
+        }
+        $this->tagList[$tag] = $words;
+        if (!$tag || empty($words)) {
+            return;
+        }
+        $this->tagList[$tag] = $words;
     }
 
     /**
