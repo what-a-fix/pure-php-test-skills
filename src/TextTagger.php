@@ -10,18 +10,45 @@ use Whatafix\TextTagger\Contracts\TextTaggerInterface;
  * C'est la seule classe que tu dois modifier
  */
 class TextTagger implements TextTaggerInterface
-{       
-        public const TAGS_FEMALE = 'Cette après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade';
-        public const TAGS_MALE = 'Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.';
+{            
+    public const TAGS_FAMILY = ['parent','enfant'];
+    public const TAGS_WALK = ['balade']; 
+    public const TAGS_LEAK = ['fuite'];
+    public const TAGS_BATHROOM = ['baignoire'];
    
-    public function getTags(string $text): array
-    {     
-        if ($text === self::TAGS_FEMALE){
-            return['family','walk'];
+
+
+public function getTags(string $text): array
+{
+    $response = [];
+    
+    foreach (self::TAGS_FAMILY as $words) {
+
+        if(substr_count($text, $words) > 1){
+             return[array_push($response,'family')];
         }
-        if ($text === self::TAGS_MALE){
-            return['leak','bathroom'];
-        }
-        return [];
+    } 
+
+    foreach (self::TAGS_WALK as $words) {
+
+        if(substr_count($text, $words)  > 1 ){
+            return[array_push($response,'walk')];
+       }
+    }
+    
+    foreach (self::TAGS_LEAK as $words) {
+
+        if(substr_count($text, $words) > 1){
+            return[array_push ($response,'leak')];
+       }
+    }
+
+    foreach (self::TAGS_BATHROOM as $words) {
+
+        if(substr_count($text, $words) > 1){
+            return[array_push($response,'bathroom')];
+       }
+    }
+    return [$response];
     }
 }
