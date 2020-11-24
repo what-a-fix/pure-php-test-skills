@@ -1,12 +1,20 @@
-<list>
+<?xml version="1.0" encoding="utf-8"?>
+<theme
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../theme-schema.xsd"
+>
+    <lang>fr</lang>
     <tag>bathroom</tag>
-    <value>lavabo</value>
-    <value>baignoire</value>
-    <value>douche</value>
-    <value>toilette</value>
-    <value>savon</value>
-    <value>shampoing</value>
-    <value>pharmacie</value>
-    <value>porte-serviettes</value>
-    <value>bain</value>
-</list>
+    <words>
+        <word weight="1" value="baignoire"/>
+        <word weight="0.25" value="lavabo"/>
+        <word value="baignoire"/>
+        <word value="douche"/>
+        <word value="toilette"/>
+        <word value="savon"/>
+        <word value="shampoing"/>
+        <word value="pharmacie"/>
+        <word value="porte-serviette" alt="porte serviette" alt="coco"/>
+        <word value="bain"/>
+    </words>
+</theme>
