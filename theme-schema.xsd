@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
     <xs:element name="theme" type="themeType">
         <xs:annotation>
             <xs:documentation>Root Element</xs:documentation>
         </xs:annotation>
     </xs:element>
+
     <xs:complexType name="themeType">
         <xs:all>
             <xs:element ref="lang"/>
@@ -12,31 +14,56 @@
             <xs:element ref="words"/>
         </xs:all>
     </xs:complexType>
+
     <xs:element name="lang" type="xs:language" nillable="false">
         <xs:annotation>
             <xs:documentation>the language for this theme</xs:documentation>
         </xs:annotation>
     </xs:element>
+
     <xs:element name="tag" type="xs:string" abstract="false">
         <xs:annotation>
             <xs:documentation>the tag for this theme</xs:documentation>
         </xs:annotation>
     </xs:element>
+
     <xs:element name="words" type="wordsType">
         <xs:annotation>
-            <xs:documentation>list Element</xs:documentation>
+            <xs:documentation>words type</xs:documentation>
         </xs:annotation>
     </xs:element>
+
     <xs:complexType name="wordsType">
+        <xs:annotation>
+            <xs:documentation>words type definition</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
-            <xs:element name="word" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:attribute name="weight" default="1" type="weightType"/>
-                    <xs:attribute name="value" type="xs:string" use="required"/>
-                </xs:complexType>
-            </xs:element>
+            <xs:element ref="word" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="word" type="wordType">
+        <xs:annotation>
+            <xs:documentation>word type</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="wordType">
+        <xs:annotation>
+            <xs:documentation>word type definition</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="value" maxOccurs="unbounded">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="weight" default="1" type="weightType"/>
+    </xs:complexType>
+
     <xs:simpleType name="weightType">
         <xs:annotation>
             <xs:documentation>weight type</xs:documentation>
@@ -45,4 +72,5 @@
             <xs:pattern value="0(\.[0-9]+)?|1"/>
         </xs:restriction>
     </xs:simpleType>
+
 </xs:schema>

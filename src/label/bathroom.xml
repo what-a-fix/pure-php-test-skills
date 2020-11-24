@@ -6,15 +6,33 @@
     <lang>fr</lang>
     <tag>bathroom</tag>
     <words>
-        <word weight="1" value="baignoire"/>
-        <word weight="0.25" value="lavabo"/>
-        <word value="baignoire"/>
-        <word value="douche"/>
-        <word value="toilette"/>
-        <word value="savon"/>
-        <word value="shampoing"/>
-        <word value="pharmacie"/>
-        <word value="porte-serviette" alt="porte serviette" alt="coco"/>
-        <word value="bain"/>
+        <word weight="0.25">
+            <value>lavabo</value>
+        </word>
+        <word>
+            <value>baignoire</value>
+        </word>
+        <word>
+            <value>douche</value>
+        </word>
+        <word>
+            <value>toilette</value>
+        </word>
+        <word>
+            <value>savon</value>
+        </word>
+        <word>
+            <value>shampoing</value>
+        </word>
+        <word weight="0.05">
+            <value>pharmacie</value>
+        </word>
+        <word>
+            <value>porte-serviette</value>
+            <value>porte serviette</value>
+        </word>
+        <word>
+            <value>bain</value>
+        </word>
     </words>
 </theme>
