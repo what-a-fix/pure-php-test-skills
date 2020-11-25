@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <theme
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../../theme-schema.xsd"
+    xsi:noNamespaceSchemaLocation="../../theme_schema.xsd"
 >
     <lang>fr</lang>
     <tag>bathroom</tag>
