@@ -6,7 +6,7 @@
     <lang>fr</lang>
     <tag>bathroom</tag>
     <words>
-        <word weight="0.25">
+        <word weight="0.75">
             <value>lavabo</value>
         </word>
         <word>
@@ -15,13 +15,13 @@
         <word>
             <value>douche</value>
         </word>
-        <word>
+        <word weight="0.25">
             <value>toilette</value>
         </word>
-        <word>
+        <word weight="0.5">
             <value>savon</value>
         </word>
-        <word>
+        <word weight="0.5">
             <value>shampoing</value>
         </word>
         <word weight="0.05">
