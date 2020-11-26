@@ -58,11 +58,11 @@ class ThemeSim implements ThemeSimInterface
      * @see https://en.wikipedia.org/wiki/Extended_Boolean_model
      * @see https://en.wikipedia.org/wiki/Tf%E2%80%93idf
      *
-     * @param array|<string, int> $wordBag
+     * @param array|<string, int> $wordsBag
      */
-    public function sim(array $wordBag): float
+    public function sim(array $wordsBag): float
     {
-        $totalOfTerms = array_sum($wordBag);
+        $totalOfTerms = array_sum($wordsBag);
         $wns = [];
         foreach ($this->theme->getWords() as $word) {
             $tf = 0;
@@ -73,8 +73,8 @@ class ThemeSim implements ThemeSimInterface
                           ...
                           Maybe when this kind of equality is done, it will be good to weighting the result with an arbitrary value
                  */
-                if (key_exists($value, $wordBag)) {
-                    $tf += $wordBag[$value];
+                if (key_exists($value, $wordsBag)) {
+                    $tf += $wordsBag[$value];
                 }
             }
             if (0 == $tf) {

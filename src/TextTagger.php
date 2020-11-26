@@ -8,122 +8,59 @@
 namespace Whatafix\TextTagger;
 
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
+use Whatafix\TextTagger\Contracts\ThemeSimInterface;
 
 class TextTagger implements TextTaggerInterface
 {
     /**
-     * tag array.
-     *
-     * @var array
+     * @var ThemeSimInterface[]
      */
-    private $tagList;
+    private array $themeSim;
 
-    /**
-     * nb of minimum match.
-     *
-     * @var int
-     */
-    private $minMatch;
-
-    public function __construct(array $tagList = [])
+    public function __construct(ThemeSimInterface ...$themeSim)
     {
-        $this->tagList = $tagList;
-        $this->minMatch = 2;
+        $this->themeSim = $themeSim;
     }
 
     /**
-     * Add labels list from php file.
-     */
-    public function addThemeTags(string $filePath): void
-    {
-        $hasExtension = preg_match('/.php$/', $filePath);
-        $fullPath = $hasExtension ? $filePath : $filePath.'.php';
-        if (!file_exists($fullPath)) {
-            return;
-        }
-        $fileContent = include $fullPath;
-        if (!is_array($fileContent) || empty($fileContent)) {
-            return;
-        }
-        $tag = basename($fullPath, '.php');
-        $this->tagList[$tag] = $fileContent;
-    }
-
-    /**
-     * Add labels list from xml file.
-     */
-    public function addThemeTagsXml(string $filePath): void
-    {
-        $hasExtension = preg_match('/.xml$/', $filePath);
-        $fullPath = $hasExtension ? $filePath : $filePath.'.xml';
-        $fileContent = file_get_contents($fullPath);
-        if (!$fileContent) {
-            return;
-        }
-        $xmlParser = new \SimpleXMLElement($fileContent);
-        $tag = (string) ($xmlParser->tag[0]);
-        $words = [];
-        foreach ($xmlParser->value as $word) {
-            $words[] = (string) $word;
-        }
-        $this->tagList[$tag] = $words;
-        if (!$tag || empty($words)) {
-            return;
-        }
-        $this->tagList[$tag] = $words;
-    }
-
-    /**
-     * Return the tags for a specific text.
-     *
-     * @return string[]
+     * Start by creating a wordBag from $text, formatted like expected and described in sim method of ThemeSim.
      */
     public function getTags(string $text): array
     {
+        // TODO : The creation of wordsBag should be optimized
+        // The creation of wordsBag is an important process. It impact performance and sim calculus
+        // First replace all punctuations with space
+        $text = preg_replace('#\.|\?|,|;|:|\(|\)|\[|\]#', ' ', $text); // TODO add more punctuation sign here
+        // Replace any whitespace with an unique space for future split
+        $text = preg_replace('#\s+#', ' ', $text);
+        $explodedString = explode(' ', $text);
+        $wordsBad = [];
+        foreach ($explodedString as $word) {
+            if (!isset($wordsBad[$word])) {
+                $wordsBad[$word] = 1;
+            } else {
+                ++$wordsBad[$word];
+            }
+        }
+
         $tags = [];
 
-        foreach ($this->tagList as $tag => $values) {
-            $countMatch = 0;
+        foreach ($this->themeSim as $themeSim) {
+            if (0 == ($sim = $themeSim->sim($wordsBad))) {
+                continue;
+            }
 
-            foreach ($values as $value) {
-                //plural management
-                $isException = preg_match('/ai?l\b/', $value);
-                if ($isException) {
-                    $value = preg_replace('/([a-z-]+)(ai?l)\b/', '$1($2s?|aux)', $value);
-                } else {
-                    $value .= '[xs]?';
-                }
+            if (!isset($tags[$themeSim->getTheme()->getTag()])) {
+                $tags[$themeSim->getTheme()->getTag()] = $sim;
 
-                //hyphen/space management
-                $value = preg_replace('/[- ]/', '( |-)', $value);
+                continue;
+            }
 
-                if (!is_string($value)) {
-                    throw new \LogicException(sprintf('$value must be a string, %s given', gettype($value)));
-                }
-                $regex = '/\b'.$value.'\b/iu';
-                $countMatch += preg_match_all($regex, $text);
-                if ($countMatch >= $this->minMatch) {
-                    $tags[] = $tag;
-
-                    break;
-                }
+            if ($tags[$themeSim->getTheme()->getTag()] < $sim) {
+                $tags[$themeSim->getTheme()->getTag()] = $sim;
             }
         }
 
         return $tags;
-    }
-
-    /**
-     * Set nb of minimum match to label the string.
-     *
-     * @return $this
-     */
-    public function setMinMatch(int $minMatch): self
-    {
-        if ($minMatch > 0) {
-            $this->minMatch = $minMatch;
-        }
-
-        return $this;
     }
 }

@@ -9,7 +9,7 @@ namespace Whatafix\TextTagger\Contracts;
 
 interface ThemeSimInterface
 {
-    public function sim(array $wordBag): float;
+    public function sim(array $wordsBag): float;
 
     public function getTheme(): ThemeInterface;
 }
