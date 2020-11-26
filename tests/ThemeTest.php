@@ -9,7 +9,6 @@ namespace Whatafix\TextTagger\Test;
 
 use PHPUnit\Framework\TestCase;
 use Whatafix\TextTagger\Theme;
-use Whatafix\TextTagger\ThemeTagger;
 use Whatafix\TextTagger\ThemeWord;
 
 /**
@@ -21,9 +20,9 @@ class ThemeTest extends TestCase
     {
         $theme = Theme::createFromXML(__DIR__.'/assets/basic_theme.xml');
 
-        $this->assertEquals('test', $theme->getTag());
-        $this->assertEquals('fr', $theme->getLang());
-        $this->assertEquals(
+        static::assertEquals('test', $theme->getTag());
+        static::assertEquals('fr', $theme->getLang());
+        static::assertEquals(
             [
                 new ThemeWord(['phpunit']),
                 new ThemeWord(['test', 'testing']),
