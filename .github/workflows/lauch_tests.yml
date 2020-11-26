@@ -1,0 +1,35 @@
+name: Launch unit test, static analysis and cs check
+
+on:
+    push:
+        branches:
+            - main
+            - dev
+    pull_request:
+        branches:
+            - main
+            - dev
+
+jobs:
+    unit-tests-on-each-php-version:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest]
+                php-versions: ['7.4']
+        name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.os }}
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v2
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: mbstring, intl, zip
+
+            - name: Install dependencies
+              run: (rm composer.lock || true) &&  composer update
+
+            - name: Run test suite
+              run: composer tests-pipe

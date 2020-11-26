@@ -1,3 +1,5 @@
 .*
 !.gitignore
 /vendor
+!.php_cs.dist
+!/.github
