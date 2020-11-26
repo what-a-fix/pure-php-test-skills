@@ -58,7 +58,7 @@ class ThemeSim implements ThemeSimInterface
      * @see https://en.wikipedia.org/wiki/Extended_Boolean_model
      * @see https://en.wikipedia.org/wiki/Tf%E2%80%93idf
      *
-     * @param array|<string, int> $wordsBag
+     * @param array<string, int> $wordsBag
      */
     public function sim(array $wordsBag): float
     {

@@ -15,7 +15,7 @@ interface TextTaggerInterface
     /**
      * Return the tags for a specific text.
      *
-     * @return string[]
+     * @return array<string, float>
      */
     public function getTags(string $text): array;
 }

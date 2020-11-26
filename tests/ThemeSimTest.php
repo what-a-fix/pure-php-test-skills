@@ -20,6 +20,12 @@ class ThemeSimTest extends TestCase
     {
         $sim = new ThemeSim(Theme::createFromXML(__DIR__.'/assets/basic_theme.xml'));
 
+        static::assertEquals(0, $sim->sim([
+            'code' => 1,
+            'is' => 1,
+            'fun' => 1,
+        ]));
+
         static::assertEquals(1, $sim->sim([
             'test' => 1,
         ]));
