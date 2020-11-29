@@ -38,19 +38,19 @@ class TextTagger implements TextTaggerInterface
         // Replace any whitespace with an unique space for future split
         $text = StrictRegex::pregReplace('#\s+#', ' ', $text);
         $explodedString = explode(' ', $text);
-        $wordsBad = [];
+        $wordsBag = [];
         foreach ($explodedString as $word) {
-            if (!isset($wordsBad[$word])) {
-                $wordsBad[$word] = 1;
+            if (!isset($wordsBag[$word])) {
+                $wordsBag[$word] = 1;
             } else {
-                ++$wordsBad[$word];
+                ++$wordsBag[$word];
             }
         }
 
         $tags = [];
 
         foreach ($this->themeSim as $themeSim) {
-            if (0 == ($sim = $themeSim->sim($wordsBad))) {
+            if (0 == ($sim = $themeSim->sim($wordsBag))) {
                 continue;
             }
 
