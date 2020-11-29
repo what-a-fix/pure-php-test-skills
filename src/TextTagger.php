@@ -7,8 +7,10 @@
 
 namespace Whatafix\TextTagger;
 
+use Exception;
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 use Whatafix\TextTagger\Contracts\ThemeSimInterface;
+use Whatafix\TextTagger\Misc\StrictRegex;
 
 class TextTagger implements TextTaggerInterface
 {
@@ -24,15 +26,17 @@ class TextTagger implements TextTaggerInterface
 
     /**
      * Start by creating a wordBag from $text, formatted like expected and described in sim method of ThemeSim.
+     *
+     * @throws Exception
      */
     public function getTags(string $text): array
     {
         // TODO : The creation of wordsBag should be optimized
         // The creation of wordsBag is an important process. It impact performance and sim calculus
         // First replace all punctuations with space
-        $text = preg_replace('#\.|\?|,|;|:|\(|\)|\[|\]#', ' ', $text); // TODO add more punctuation sign here
+        $text = StrictRegex::pregReplace('#\.|\?|,|;|:|\(|\)|\[|\]#', ' ', $text); // TODO add more punctuation sign here
         // Replace any whitespace with an unique space for future split
-        $text = preg_replace('#\s+#', ' ', $text);
+        $text = StrictRegex::pregReplace('#\s+#', ' ', $text);
         $explodedString = explode(' ', $text);
         $wordsBad = [];
         foreach ($explodedString as $word) {
