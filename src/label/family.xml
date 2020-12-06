@@ -1,0 +1,26 @@
+<list>
+    <tag>family</tag>
+    <value>fils</value>
+    <value>fille</value>
+    <value>parent</value>
+    <value>mère</value>
+    <value>père</value>
+    <value>maman</value>
+    <value>papa</value>
+    <value>grand-parent</value>
+    <value>grand-mère</value>
+    <value>grand-père</value>
+    <value>tante</value>
+    <value>oncle</value>
+    <value>neveu</value>
+    <value>nièce</value>
+    <value>cousin</value>
+    <value>cousine</value>
+    <value>épouse</value>
+    <value>mari</value>
+    <value>beau-frère</value>
+    <value>belle-soeur</value>
+    <value>frère</value>
+    <value>soeur</value>
+    <value>enfant</value>
+</list>

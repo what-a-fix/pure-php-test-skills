@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../theme_schema.xsd"
+>
+    <lang>fr</lang>
+    <tag>bathroom</tag>
+    <words>
+        <word weight="0.75">
+            <value>lavabo</value>
+        </word>
+        <word>
+            <value>baignoire</value>
+        </word>
+        <word>
+            <value>douche</value>
+        </word>
+        <word weight="0.25">
+            <value>toilette</value>
+        </word>
+        <word weight="0.5">
+            <value>savon</value>
+        </word>
+        <word weight="0.5">
+            <value>shampoing</value>
+        </word>
+        <word weight="0.05">
+            <value>pharmacie</value>
+        </word>
+        <word>
+            <value>porte-serviette</value>
+        </word>
+        <word>
+            <value>bain</value>
+        </word>
+    </words>
+</theme>

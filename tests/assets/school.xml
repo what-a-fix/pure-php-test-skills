@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../theme_schema.xsd"
+>
+    <lang>fr</lang>
+    <tag>school</tag>
+    <words>
+        <word weight="0.75">
+            <value>école</value>
+        </word>
+        <word>
+            <value>faute</value>
+        </word>
+        <word>
+            <value>grammaire</value>
+        </word>
+        <word weight="0.25">
+            <value>éducation</value>
+        </word>
+        <word weight="0.5">
+            <value>punition</value>
+        </word>
+        <word weight="0.5">
+            <value>bulletin</value>
+        </word>
+        <word weight="0.05">
+            <value>institutrice</value>
+        </word>
+        <word>
+            <value>étude</value>
+        </word>
+        <word>
+            <value>problème</value>
+        </word>
+        <word>
+            <value>cours</value>
+        </word>
+        <word>
+            <value>classe</value>
+        </word>
+        <word>
+            <value>devoir</value>
+        </word>
+        <word>
+            <value>élève</value>
+        </word>
+        <word>
+            <value>instituteur</value>
+        </word>
+        <word>
+            <value>leçon</value>
+        </word>
+        <word>
+            <value>savoir</value>
+        </word>
+        <word>
+            <value>science</value>
+        </word>
+        <word>
+            <value>apprentissage</value>
+        </word>
+        <word>
+            <value>mot</value>
+        </word>
+        <word>
+            <value>écolier</value>
+        </word>
+        <word>
+            <value>parole</value>
+        </word>
+        <word>
+            <value>récréation</value>
+        </word>
+        <word>
+            <value>rentrée</value>
+        </word>
+        <word>
+            <value>vacance</value>
+        </word>
+        <word>
+            <value>exemple</value>
+        </word>
+        <word>
+            <value>instruction</value>
+        </word>
+        <word>
+            <value>livre</value>
+        </word>
+        <word>
+            <value>page</value>
+        </word>
+        <word>
+            <value>problème</value>
+        </word>
+        <word>
+            <value>stylo</value>
+        </word>
+        <word>
+            <value>math</value>
+        </word>
+        <word>
+            <value>physique</value>
+        </word>
+        <word>
+            <value>chimie</value>
+        </word>
+        <word>
+            <value>collège</value>
+        </word>
+        <word>
+            <value>lycée</value>
+        </word>
+        <word>
+            <value>formation</value>
+        </word>
+        <word>
+            <value>scolaire</value>
+        </word>
+        <word>
+            <value>enseignement</value>
+        </word>
+        <word>
+            <value>correction</value>
+        </word>
+        <word>
+            <value>poésie</value>
+        </word>
+        <word>
+            <value>poème</value>
+        </word>
+        <word>
+            <value>dictionnaire</value>
+        </word>
+        <word>
+            <value>rédaction</value>
+        </word>
+        <word>
+            <value>note</value>
+        </word>
+        <word>
+            <value>question</value>
+        </word>
+        <word>
+            <value>examen</value>
+
+        </word>
+        <word>
+            <value>oral</value>
+        </word>
+        <word>
+            <value>travail</value>
+        </word>
+    </words>
+</theme>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
