@@ -10,7 +10,6 @@ namespace Whatafix\TextTagger;
 use Exception;
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 use Whatafix\TextTagger\Contracts\ThemeSimInterface;
-use Whatafix\TextTagger\Misc\StrictRegex;
 
 class TextTagger implements TextTaggerInterface
 {

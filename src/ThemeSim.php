@@ -64,7 +64,7 @@ class ThemeSim implements ThemeSimInterface
     {
         $totalOfTerms = array_sum($wordsBag);
         $sumWns = 0;
-        $nbMatchedWord=0;
+        $nbMatchedWord = 0;
         foreach ($this->theme->getWords() as $word) {
             $tf = 0;
             foreach ($word->getValues() as $value) {
@@ -80,12 +80,12 @@ class ThemeSim implements ThemeSimInterface
             }
             if (0 !== $tf) {
                 $sumWns += $tf / $totalOfTerms;
-                $nbMatchedWord++;
+                ++$nbMatchedWord;
             }
         }
 
         //disjonctive request(&&)  1 - (($nbMatchedWord - $sumWns) / $nbMatchedWord)
         //conjonctive request(||) $sumWns / $nbMatchedWord
-        return $nbMatchedWord === 0? 0 : $sumWns / $nbMatchedWord;
+        return 0 === $nbMatchedWord ? 0 : $sumWns / $nbMatchedWord;
     }
 }
