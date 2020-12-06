@@ -33,11 +33,7 @@ class TextTagger implements TextTaggerInterface
     {
         // TODO : The creation of wordsBag should be optimized
         // The creation of wordsBag is an important process. It impact performance and sim calculus
-        // First replace all punctuations with space
-        $text = StrictRegex::pregReplace('#\.|\?|,|;|:|\(|\)|\[|\]#', ' ', $text); // TODO add more punctuation sign here
-        // Replace any whitespace with an unique space for future split
-        $text = StrictRegex::pregReplace('#\s+#', ' ', $text);
-        $explodedString = explode(' ', $text);
+        $explodedString = preg_split('/[^\w-]+/', $text);
         $wordsBag = [];
         foreach ($explodedString as $word) {
             if (!isset($wordsBag[$word])) {
