@@ -63,4 +63,18 @@ class TextTagger implements TextTaggerInterface
 
         return $tags;
     }
+
+    public function addTheme(ThemeSimInterface ...$themeSims)
+    {
+        foreach ($themeSims as $themeSim) {
+            if (!in_array($themeSim, $this->themeSim)) {
+                $this->themeSim[] = $themeSim;
+            }
+        }
+    }
+
+    public function getThemes()
+    {
+        return $this->themeSim;
+    }
 }
