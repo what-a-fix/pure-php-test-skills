@@ -34,6 +34,9 @@ class TextTagger implements TextTaggerInterface
         // TODO : The creation of wordsBag should be optimized
         // The creation of wordsBag is an important process. It impact performance and sim calculus
         $explodedString = preg_split('/[^\w-]+/', $text);
+        if (!$explodedString) {
+            return [];
+        }
         $wordsBag = [];
         foreach ($explodedString as $word) {
             if (!isset($wordsBag[$word])) {
@@ -64,7 +67,7 @@ class TextTagger implements TextTaggerInterface
         return $tags;
     }
 
-    public function addTheme(ThemeSimInterface ...$themeSims)
+    public function addTheme(ThemeSimInterface ...$themeSims): void
     {
         foreach ($themeSims as $themeSim) {
             if (!in_array($themeSim, $this->themeSim)) {
@@ -73,7 +76,7 @@ class TextTagger implements TextTaggerInterface
         }
     }
 
-    public function getThemes()
+    public function getThemes(): array
     {
         return $this->themeSim;
     }
