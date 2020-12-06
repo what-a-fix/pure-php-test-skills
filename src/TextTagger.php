@@ -32,7 +32,8 @@ class TextTagger implements TextTaggerInterface
     {
         // TODO : The creation of wordsBag should be optimized
         // The creation of wordsBag is an important process. It impact performance and sim calculus
-        $explodedString = preg_split('/[^\w-]+/', $text);
+        $text = strtolower($text);
+        $explodedString = preg_split('/[^-a-z\x{0080}-\x{FFFF}]+/u', $text, -1, PREG_SPLIT_NO_EMPTY);
         if (!$explodedString) {
             return [];
         }

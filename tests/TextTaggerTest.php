@@ -27,7 +27,7 @@ class TextTaggerTest extends TestCase
     public function basicThemeDataProvider(): \Generator
     {
         yield [
-            'text' => 'code is fun',
+            'text' => 'code ,{#~_ࢤਣç !%µis fun?&é"&"&\'|===&&&',
             'expectedTags' => [],
         ];
 
@@ -63,6 +63,12 @@ class TextTaggerTest extends TestCase
             return;
         }
 
+        $this->textTagger->addTheme(
+            new ThemeSim(Theme::createFromXML(__DIR__.'/assets/bathroom.xml')),
+            new ThemeSim(Theme::createFromXML(__DIR__.'/assets/school.xml')),
+            new ThemeSim(Theme::createFromXML(__DIR__.'/assets/train.xml')),
+            new ThemeSim(Theme::createFromXML(__DIR__.'/assets/walk.xml'))
+        );
         foreach ($expectedTags as $tag) {
             static::assertArrayHasKey($tag, $this->textTagger->getTags($text));
         }
