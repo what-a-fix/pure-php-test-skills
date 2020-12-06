@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../theme_schema.xsd"
+>
+    <lang>fr</lang>
+    <tag>walk</tag>
+    <words>
+        <word>
+            <value>ballade</value>
+        </word>
+        <word>
+            <value>sortie</value>
+        </word>
+        <word>
+            <value>promener</value>
+        </word>
+        <word>
+            <value>promenade</value>
+        </word>
+        <word>
+            <value>parc</value>
+        </word>
+    </words>
+</theme>
+
+
