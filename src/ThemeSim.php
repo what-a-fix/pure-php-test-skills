@@ -63,7 +63,8 @@ class ThemeSim implements ThemeSimInterface
     public function sim(array $wordsBag): float
     {
         $totalOfTerms = array_sum($wordsBag);
-        $wns = [];
+        $sumWns = 0;
+        $nbMatchedWord=0;
         foreach ($this->theme->getWords() as $word) {
             $tf = 0;
             foreach ($word->getValues() as $value) {
@@ -77,15 +78,14 @@ class ThemeSim implements ThemeSimInterface
                     $tf += $wordsBag[$value];
                 }
             }
-            if (0 == $tf) {
-                continue;
+            if (0 !== $tf) {
+                $sumWns += $tf / $totalOfTerms;
+                $nbMatchedWord++;
             }
-            $wns[] = $tf / $totalOfTerms;
-        }
-        if (0 == ($n = count($wns))) {
-            return 0;
         }
 
-        return 1 - (($n - array_sum($wns)) / $n);
+        //disjonctive request(&&)  1 - (($nbMatchedWord - $sumWns) / $nbMatchedWord)
+        //conjonctive request(||) $sumWns / $nbMatchedWord
+        return $nbMatchedWord === 0? 0 : $sumWns / $nbMatchedWord;
     }
 }
