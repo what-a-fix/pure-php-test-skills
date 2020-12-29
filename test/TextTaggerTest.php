@@ -18,6 +18,6 @@ class TextTaggerTest extends TestCase {
         $this->assertEquals($tags1, [ 'family', 'walk']);        
         $this->assertEquals($tags2, [ 'leak', 'bathroom' ]);                                                                   
         
-    }
+    }  
 
 }   

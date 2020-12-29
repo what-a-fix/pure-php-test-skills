@@ -64,7 +64,7 @@ class TextTagger implements TextTaggerInterface
            }
         }    
   
-        return $response;                
+        return $response;                  
     }
        
     

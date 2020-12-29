@@ -13,7 +13,7 @@
 - Je vous remercie pour votre compréhension et vous prie de revenir vers moi pour de potentielles modifications du code. 
 
 - Bien cordialement,   
-      
+           
 # Santiago Martinez KAMGA
 
 # Lien du site : https://www.rimessolides.com/motscles.aspx?m=La+Famille
