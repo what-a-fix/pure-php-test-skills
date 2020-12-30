@@ -60,7 +60,8 @@
 *Internet*, *HTML*, *web* for "informatique"
 
 ## Possible improvements
-
+  - Better XML
+  - Verbs
   - Adding plurial
   - Ignore accents
   - Find closest word after typing error (ex: Ord**o**nateur instead of Ordinateur)
