@@ -23,7 +23,6 @@ class ThemesGeneratorTest extends TestCase
         //ACCURACY_LOW
         $this->assertSame(['animaux','habitation','informatique'], $this->themesGenerator->generateThemes(['J\'ai','vu','un','chat','assis','un','canapé','sur','internet'],'test'));
 
-        
         //ACCURACY_HIGH
         $this->assertSame(['informatique'], $this->themesGenerator->generateThemes(['Internet','et', 'le', 'HTML', 'sont' ,'vraiment', 'formidables', 'C\'est' ,'fou', 'comment', 'le' ,'web' ,'a' ,'révolutionné' ,'le','monde'],'test'));
 
