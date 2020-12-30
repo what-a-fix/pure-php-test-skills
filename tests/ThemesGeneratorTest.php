@@ -29,7 +29,6 @@ class ThemesGeneratorTest extends TestCase
 
         //ACCURACY_MEDIUM
         $this->assertSame(['animaux','informatique'], $this->themesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'],'test'));
-        
 
         //No keyword found
         $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->themesGenerator->generateThemes(['Il','est','impossible','de','voler'],'test'));
