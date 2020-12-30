@@ -13,7 +13,7 @@ use Whatafix\TextTagger\Word;
 /**
  * @internal
  */
-class TextWordClass extends TestCase
+class WordTest extends TestCase
 {
     /**
      * Word class.
@@ -38,7 +38,6 @@ class TextWordClass extends TestCase
         $this->assertEquals('s', $word1->getPlurial());
         $this->assertEquals(0, $word1->getPlurialPositionMinus());
 
-        $word1->getPlurialGenerated();
         $this->assertEquals('patates', $word1->getPlurialGenerated());
 
         //ex substr_replace('animal','ux',-1) will return 'animaux'.
@@ -50,7 +49,6 @@ class TextWordClass extends TestCase
         $this->assertEquals('ux', $word2->getPlurial());
         $this->assertEquals(-1, $word2->getPlurialPositionMinus());
 
-        $word2->getPlurialGenerated();
         $this->assertEquals('animaux', $word2->getPlurialGenerated());
     }
 }

@@ -69,7 +69,19 @@ class Themes implements ThemesInterface
         $this->setThemeName($tag[0]->textContent);
 
         foreach ($words as $word) {
-            array_push($this->words, mb_strtolower($word->nodeValue, 'UTF-8'));
+            $values = [];
+            $children = $word->childNodes;
+
+            foreach ($children as $child) {
+                array_push($values, $child->nodeValue);
+            }
+
+            $word = new Word();
+            $word->setWordName($values[0]);
+            $word->setPlurial($values[1]);
+            $word->setPlurialPositionMinus(intval($values[2]));
+
+            array_push($this->words, $word/*mb_strtolower($word->nodeValue, 'UTF-8')*/);
         }
 
         return $this;

@@ -54,7 +54,9 @@ class ThemesGenerator implements ThemesGeneratorInterface
                 //for each word in the theme
                 foreach ($themeWords as $themeWord) {
                     //If the current text's word matches the current theme word
-                    if ($word == $themeWord) {
+
+                    if ($word == $themeWord->getWordName() || $word == $themeWord->getPlurialGenerated()) {
+                        //return [$themeWord->getPlurialGenerated()];
                         //Get the current force
                         $currentThemeForce = $theme->getForce();
 

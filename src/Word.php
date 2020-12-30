@@ -49,7 +49,7 @@ class Word implements WordInterface
 
     public function getPlurialGenerated(): string
     {
-        if (0 === $this->getPlurialPositionMinus()) {
+        if (0 == $this->getPlurialPositionMinus()) {
             if ('' !== $this->getPlurial()) {
                 //ex: 'patate' will return 'patates'.
                 return $this->getWordName().$this->getPlurial();
