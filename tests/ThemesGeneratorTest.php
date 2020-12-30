@@ -34,8 +34,12 @@ class ThemesGeneratorTest extends TestCase
         $high = $this->themesGenerator->generateThemes(['Internet', 'et', 'le', 'HTML', 'sont', 'vraiment', 'formidables', 'C\'est', 'fou', 'comment', 'le', 'web', 'a', 'révolutionné', 'le', 'monde'], 'test');
         $this->assertContains('informatique', $high);
 
-        //ACCURACY_MEDIUM
+        //ACCURACY_HIGH with Plural nouns
+        $high = $this->themesGenerator->generateThemes(['chiens', 'chats', 'éléphants'], 'test');
+        $this->assertContains('animaux', $high);
+
         $medium = $this->themesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test');
+        //ACCURACY_HIGH with Plural hemesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test');
         $this->assertContains('animaux', $medium);
         $this->assertContains('informatique', $medium);
 
