@@ -47,6 +47,10 @@ class ThemesTest extends TestCase
         $generation->setForce(1.0);
         $this->assertEquals($generation->getForce(), 1.0);
 
+        //Test the setter and getter for force
+        $generation->setWords(['lapin', 'girafe', 'poulet', 'coq', 'chêvre']);
+        $this->assertEquals($generation->getWords(), ['lapin', 'girafe', 'poulet', 'coq', 'chêvre']);
+
         //$this->assertSame(['école','professeur','enseignant','craie','tableau','récréation','travail','apprendre'], $generation->getWords());
     }
 }

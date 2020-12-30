@@ -40,4 +40,9 @@ interface ThemesInterface
      * ex: "Vacances".
      */
     public function setThemeName(string $filename): void;
+
+    /**
+     * Set an array of words.
+     */
+    public function setWords(array $words): void;
 }

@@ -8,6 +8,7 @@
 namespace Whatafix\TextTagger\Test;
 
 use PHPUnit\Framework\TestCase;
+use Whatafix\TextTagger\Themes;
 use Whatafix\TextTagger\ThemesGenerator;
 
 /**
@@ -47,4 +48,25 @@ class ThemesGeneratorTest extends TestCase
         //No keyword found
         $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->themesGenerator->generateThemes(['Il', 'est', 'impossible', 'de', 'voler'], 'test'));
     }
+
+    /*
+    public function testGetThemesByAccuracy()
+    {
+        $ThemeAnimaux=New Themes();
+        $ThemeAnimaux->setThemeName('animaux');
+        $ThemeAnimaux->setWords(['lapin','girafe','poulet','coq','chêvre']);
+        $ThemeAnimaux->setForce(2);
+
+        $ThemeInformatique=New Themes();
+        $ThemeInformatique->setThemeName('informatique');
+        $ThemeInformatique->setWords(['ordinateur','pc','téléphone','internet','clavier']);
+        $ThemeInformatique->setForce(2);
+
+        $this->assertSame('toto',$this->themesGenerator->getThemesByAccuracy([$ThemeAnimaux,$ThemeInformatique],2.0));
+    }
+
+    public function testGetSameForceTags()
+    {
+
+    }*/
 }

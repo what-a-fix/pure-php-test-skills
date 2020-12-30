@@ -65,6 +65,11 @@ class ThemesGenerator implements ThemesGeneratorInterface
             }
         }
 
+        return $this->getThemesByAccuracy($Themes);
+    }
+
+    private function getThemesByAccuracy(array $Themes): array
+    {
         //Sort the "Themes" array on the attribute force to get the strongest force at the end of the array and the weakest force at the beginning.
         usort($Themes, function ($a, $b) {
             return $a->getForce() <=> $b->getForce();
@@ -75,67 +80,39 @@ class ThemesGenerator implements ThemesGeneratorInterface
             $strongestTheme = $strongestTheme->getForce();
         }
 
-        //If the theme matches ACCURACY_HIGH, so at least 3 words, we are confinent to display only one theme
+        //Eventually return the accuracy
         if ($strongestTheme >= $this->accuracy::ACCURACY_HIGH) {
-            //To find if there is themes with the same force
-            $themesWithSameForce = 0;
-            foreach ($Themes as $theme) {
-                if ($theme->getForce() === $strongestTheme) {
-                    ++$themesWithSameForce;
-                }
-            }
-            //To find if there is themes with the same force
-            $finalArray = array_slice($Themes, -$themesWithSameForce, $themesWithSameForce, true);
-
-            $tags = [];
-            foreach ($finalArray as $Theme) {
-                array_push($tags, $Theme->getThemeName());
-            }
-
-            return $tags;
+            return $this->getSameForceTags($Themes, $strongestTheme);
         }
 
-        //If the theme matches ACCURACY_MEDIUM, so 2 words, we display multiple themes as for example, "cuisinière" can be what is used to cook, or a person. Or "froid", a cold dish or a cold person.
         if ($strongestTheme === $this->accuracy::ACCURACY_MEDIUM) {
-            //To find if there is themes with the same force
-            $themesWithSameForce = 0;
-            foreach ($Themes as $theme) {
-                if ($theme->getForce() === $strongestTheme) {
-                    ++$themesWithSameForce;
-                }
-            }
-
-            $finalArray = array_slice($Themes, -$themesWithSameForce, $themesWithSameForce, true);
-
-            $tags = [];
-            foreach ($finalArray as $Theme) {
-                array_push($tags, $Theme->getThemeName());
-            }
-
-            return $tags;
+            return $this->getSameForceTags($Themes, $strongestTheme);
         }
 
-        //If the theme matches ACCURACY_LOW, we will only get potential themes as 1 word cannot be accurate and can be found in multiple themes. (ex: "Rayon" can be found in "Bike", "Market", "Radioactivity", "Geometry", "Sky", etc)
         if ($strongestTheme === $this->accuracy::ACCURACY_LOW) {
-            //To find if there are themes with the same force
-
-            $themesWithSameForce = 0;
-            foreach ($Themes as $theme) {
-                if ($theme->getForce() === $strongestTheme) {
-                    ++$themesWithSameForce;
-                }
-            }
-
-            $finalArray = array_slice($Themes, -$themesWithSameForce, $themesWithSameForce, true);
-
-            $tags = [];
-            foreach ($finalArray as $Theme) {
-                array_push($tags, $Theme->getThemeName());
-            }
-
-            return $tags;
+            return $this->getSameForceTags($Themes, $strongestTheme);
         }
 
         return ['Impossible to find a theme, too few words in our database or sentence not accurate enough.'];
+    }
+
+    //To find if there is themes with the same force
+    private function getSameForceTags(array $Themes, float $strongestTheme): array
+    {
+        $themesWithSameForce = 0;
+        foreach ($Themes as $theme) {
+            if ($theme->getForce() === $strongestTheme) {
+                ++$themesWithSameForce;
+            }
+        }
+        //All the Themes with the same number of words matched
+        $finalArray = array_slice($Themes, -$themesWithSameForce, $themesWithSameForce, true);
+
+        $tags = [];
+        foreach ($finalArray as $Theme) {
+            array_push($tags, $Theme->getThemeName());
+        }
+
+        return $tags;
     }
 }

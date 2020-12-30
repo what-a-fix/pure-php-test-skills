@@ -36,6 +36,11 @@ class Themes implements ThemesInterface
         return $this->words;
     }
 
+    public function setWords(array $words): void
+    {
+        $this->words = $words;
+    }
+
     public function getForce(): float
     {
         return $this->force;
