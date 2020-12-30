@@ -1,54 +1,70 @@
-# Let's try to do a light PHP library
+# Light PHP library
 
-## Specifications
+## How it works
 
-- The library should solve this specific problem : tagging a text with specific attributes according to it's content.
+  - The method getTags() in the class TextTagger.php is the entry point of the Sentence. It will output one tag (called Theme in the project) or many tags in an array, depending on the accuracy of the keywords in the Sentence.
 
-## At your disposal to start the project
+  - The others methods are described in the Interfaces.
 
-- [x] Interface that define the public library API
+  - The tests are using separate xml files to avoid any conflict, tests methods require a parameter $env="test" to load the correct xml folder.
 
-## What we expect
+## What is the accuracy
 
-- [ ] A functional library of course :)
+  - The accuracy defined in the class Accuracy.php will give us 3 variables.
 
-- [ ] The library MUST be tested, so you have to provide unit testing series in the project
+  - These variables are either ACCURACY_LOW, ACCURACY_MEDIUM or ACCURACY_HIGH. 
 
-## I don't really understand specs !
+  - No keyword found, we get an error message.
 
-Ok, let me show you an example :
+  - ACCURACY_LOW means that only 1 keyword have been found in a Theme. We will display potential themes. (As a word can be found in many themes like "glace", "espace", "rayon")
 
-- Let's say we've got two text (french text) :
+  - ACCURACY_MEDIUM means that 2 keywords were found. We will display 1 theme (or more if its a tie with other themes)
 
-  - 1 : Cette après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade.
-  - 2 : Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.
+  - ACCURACY_HIGH means that 3 keywords were found. We will display 1 theme. (or more if its a tie with other themes)
 
-- So, tags returned for sentence 1 should be something like : 
+## Where to find the Data
 
-```php
-[
-    'family',
-    'walk',
-];
-```
+  - The data can be added by creating a xml file in the themes folder, it is preferable that the name of the file is the same as the theme tag inside.
 
-- And tags for sentence 2 should be something like : 
+  - Then add your words for the theme.
 
-```php
-[
-    'leak',
-    'bathroom',
-];
-```
+  - The xml files are auto loaded so no need to declare them inside the code.
 
-This is a proof of concept , you don't have to create the whole scope for any kind of thematics tag. Keep focus about one or two thematics, and make it works and detect well...
+## The Input
 
-## How to submit ?
+  - 1 : Hier je suis allé au parc avec mon ordinateur portable, ainsi que mon chien et mon chat.
+  - 2 : Internet et le HTML sont vraiment formidables! C'est fou comment le web a révolutionné le monde.
 
-To introduce your project, please start by forking this repo and submit a pull request when you think it is OK.
+## The Output
 
-Please do not forget to write a README other than this one, fill it with any information you feel is relevant.
+- Tags returned for sentence 1 : 
 
-## Need extra information ? Questions about the project ? ...
+  ```php
+  [
+      'informatique',
+      'animaux',
+  ];
+  ```
+- **matched words are:**
+*parc*, *ordinateur* for "informatique"
+*chien*, *chat* for "animaux"
 
-For any further question, contact me by email - 2m@whatafix.com
+- Tags returned for sentence 2 : 
+
+  ```php
+  [
+      'informatique'
+  ];
+  ```
+- **matched words are:**
+*Internet*, *HTML*, *web* for "informatique"
+
+## Possible improvements
+
+  - Adding plurial
+  - Ignore accents
+  - Find closest word after typing error (ex: Ord**o**nateur instead of Ordinateur)
+
+## Contact
+
+E-mail: lantranbaptiste@gmail.com
