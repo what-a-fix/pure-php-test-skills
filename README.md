@@ -64,7 +64,7 @@
   - Adding plurial
   - Ignore accents
   - Find closest word after typing error (ex: Ord**o**nateur instead of Ordinateur)
-  - Separate ThemesGenerator.php logic into methods for betetr readability
+  - Separate ThemesGenerator.php logic into methods for better readability
 ## Contact
 
 E-mail: lantranbaptiste@gmail.com
