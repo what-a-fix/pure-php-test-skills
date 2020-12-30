@@ -30,13 +30,19 @@ class TextTaggerTest extends TestCase
     public function testTextTaggerResponse()
     {
         //ACCURACY_LOW
-        $this->assertSame(['animaux', 'habitation', 'informatique'], $this->textTagger->getTags('J\'ai vu un chat assis sur un canapé sur internet', 'test'));
+        $low = $this->textTagger->getTags('J\'ai vu un chat assis sur un canapé sur internet', 'test');
+        $this->assertContains('animaux',$low);
+        $this->assertContains('habitation',$low);
+        $this->assertContains('informatique',$low);
 
         //ACCURACY_MEDIUM
-        $this->assertSame(['animaux', 'informatique'], $this->textTagger->getTags('Hier je suis allé au parc avec mon ordinateur portable ainsi que mon chien et mon chat', 'test'));
+        $medium = $this->textTagger->getTags('Hier je suis allé au parc avec mon ordinateur portable ainsi que mon chien et mon chat', 'test');
+        $this->assertContains('animaux', $medium);
+        $this->assertContains('informatique', $medium);
 
         //ACCURACY_HIGH
-        $this->assertSame(['informatique'], $this->textTagger->getTags('Internet et le HTML sont vraiment formidables! C\'est fou comment le web a révolutionné le monde.', 'test'));
+        $high = $this->textTagger->getTags('Internet et le HTML sont vraiment formidables! C\'est fou comment le web a révolutionné le monde.', 'test');
+        $this->assertContains('informatique',$high);
 
         //No keyword found
         $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->textTagger->getTags('Il est impossible de voler.', 'test'));

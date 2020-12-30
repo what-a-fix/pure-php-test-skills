@@ -29,14 +29,20 @@ class ThemesGeneratorTest extends TestCase
 
     public function testThemeGeneration()
     {
-        //ACCURACY_LOW
-        $this->assertSame(['animaux', 'habitation', 'informatique'], $this->themesGenerator->generateThemes(['J\'ai', 'vu', 'un', 'chat', 'assis', 'un', 'canapé', 'sur', 'internet'], 'test'));
-
         //ACCURACY_HIGH
-        $this->assertSame(['informatique'], $this->themesGenerator->generateThemes(['Internet', 'et', 'le', 'HTML', 'sont', 'vraiment', 'formidables', 'C\'est', 'fou', 'comment', 'le', 'web', 'a', 'révolutionné', 'le', 'monde'], 'test'));
+        $high = $this->themesGenerator->generateThemes(['Internet', 'et', 'le', 'HTML', 'sont', 'vraiment', 'formidables', 'C\'est', 'fou', 'comment', 'le', 'web', 'a', 'révolutionné', 'le', 'monde'], 'test');
+        $this->assertContains('informatique', $high);
 
         //ACCURACY_MEDIUM
-        $this->assertSame(['animaux', 'informatique'], $this->themesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test'));
+        $medium = $this->themesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test');
+        $this->assertContains('animaux', $medium);
+        $this->assertContains('informatique', $medium);
+
+        //ACCURACY_LOW
+        $low = $this->themesGenerator->generateThemes(['J\'ai', 'vu', 'un', 'chat', 'assis', 'un', 'canapé', 'sur', 'internet'], 'test');
+        $this->assertContains('animaux', $low);
+        $this->assertContains('habitation', $low);
+        $this->assertContains('informatique', $low);
 
         //No keyword found
         $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->themesGenerator->generateThemes(['Il', 'est', 'impossible', 'de', 'voler'], 'test'));
