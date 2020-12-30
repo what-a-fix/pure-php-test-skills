@@ -1,11 +1,16 @@
 <?php
 
-namespace Whatafix\TextTagger;
-
-
 /**
  * @author Dev applicant
  * @link https://github.com/what-a-fix/pure-php-test-skills
+ */
+
+namespace Whatafix\TextTagger;
+
+/**
+ * @author Dev applicant
+ *
+ * @see https://github.com/what-a-fix/pure-php-test-skills
  */
 class Accuracy
 {

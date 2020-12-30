@@ -1,13 +1,22 @@
 <?php
+
+/**
+ * @author Dev applicant
+ * @link https://github.com/what-a-fix/pure-php-test-skills
+ */
+
 namespace Whatafix\TextTagger\Test;
 
 use PHPUnit\Framework\TestCase;
 use Whatafix\TextTagger\Themes;
 
+/**
+ * @internal
+ */
 class ThemesTest extends TestCase
 {
     /**
-     * Themes class
+     * Themes class.
      *
      * @var Themes
      */
@@ -15,7 +24,7 @@ class ThemesTest extends TestCase
 
     public function setUp(): void
     {
-        $this->themes=new Themes();
+        $this->themes = new Themes();
     }
 
     public function testGenerateDataFromXML()
@@ -26,18 +35,18 @@ class ThemesTest extends TestCase
         $this->assertSame('animaux', $generation->getThemeName());
 
         //Verify first XML file words
-        $this->assertEquals($generation->getWords()[0],'chien');
-        $this->assertEquals($generation->getWords()[1],'chat');
-        $this->assertEquals($generation->getWords()[2],'lapin');
+        $this->assertEquals($generation->getWords()[0], 'chien');
+        $this->assertEquals($generation->getWords()[1], 'chat');
+        $this->assertEquals($generation->getWords()[2], 'lapin');
 
         //Test the setter and getter of themeName
         $generation->setThemeName('Animaux');
-        $this->assertEquals($generation->getThemeName(),'Animaux');
+        $this->assertEquals($generation->getThemeName(), 'Animaux');
 
         //Test the setter and getter of force
         $generation->setForce(1.0);
-        $this->assertEquals($generation->getForce(),1.0);
-        
+        $this->assertEquals($generation->getForce(), 1.0);
+
         //$this->assertSame(['école','professeur','enseignant','craie','tableau','récréation','travail','apprendre'], $generation->getWords());
     }
 }

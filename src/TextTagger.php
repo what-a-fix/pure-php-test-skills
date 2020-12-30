@@ -7,10 +7,7 @@
 
 namespace Whatafix\TextTagger;
 
-
-use Whatafix\TextTagger\ThemesGenerator;
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
-
 
 class TextTagger implements TextTaggerInterface
 {
@@ -21,15 +18,12 @@ class TextTagger implements TextTaggerInterface
         $this->simulation = new ThemesGenerator();
     }
 
-    public function getTags(string $text,string $env='prod'): array
+    public function getTags(string $text, string $env = 'prod'): array
     {
-        
-        //Separate the text in arrays, set the text in lowercase (using UTF-8 to avoid missing accents) and remove any punctuation 
-        $Words=explode(" ", mb_strtolower(trim($text,'(\.|\,|\;|\:|\!|\?)'),'UTF-8'));
+        //Separate the text in arrays, set the text in lowercase (using UTF-8 to avoid missing accents) and remove any punctuation
+        $Words = explode(' ', mb_strtolower(trim($text, '(\.|\,|\;|\:|\!|\?)'), 'UTF-8'));
         //Generate the tags
-        $tags = $this->simulation->generateThemes($Words,$env);
-        
+        return $this->simulation->generateThemes($Words, $env);
         //Return the tags
-        return $tags;
     }
 }
