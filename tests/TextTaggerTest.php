@@ -45,6 +45,6 @@ class TextTaggerTest extends TestCase
         $this->assertContains('informatique', $high);
 
         //No keyword found
-        $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->textTagger->getTags('Il est impossible de voler.', 'test'));
+        $this->assertSame([], $this->textTagger->getTags('Il est impossible de voler.', 'test'));
     }
 }

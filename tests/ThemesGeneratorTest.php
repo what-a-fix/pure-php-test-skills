@@ -50,7 +50,7 @@ class ThemesGeneratorTest extends TestCase
         $this->assertContains('informatique', $low);
 
         //No keyword found
-        $this->assertSame(['Impossible to find a theme, too few words in our database or sentence not accurate enough.'], $this->themesGenerator->generateThemes(['Il', 'est', 'impossible', 'de', 'voler'], 'test'));
+        $this->assertSame([], $this->themesGenerator->generateThemes(['Il', 'est', 'impossible', 'de', 'voler'], 'test'));
     }
 
     /*

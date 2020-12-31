@@ -95,7 +95,7 @@ class ThemesGenerator implements ThemesGeneratorInterface
             return $this->getSameForceTags($Themes, $strongestTheme);
         }
 
-        return ['Impossible to find a theme, too few words in our database or sentence not accurate enough.'];
+        return [];
     }
 
     //To find if there is themes with the same force
