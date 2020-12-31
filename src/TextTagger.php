@@ -20,8 +20,10 @@ class TextTagger implements TextTaggerInterface
 
     public function getTags(string $text, string $env = 'prod'): array
     {
-        //Separate the text in arrays, set the text in lowercase (using UTF-8 to avoid missing accents) and remove any punctuation
-        $Words = explode(' ', mb_strtolower(trim($text, '(\.|\,|\;|\:|\!|\?)'), 'UTF-8'));
+        //Replace punctuaction, characters, words with apostrophe.
+        $text = str_replace(['c\'', 'd\'', 'n\'', 'qu\'', 'l\'', 't\'', 'm\'', 'j\'', 's\'', '.', '?', '”', '“', '\‘', '\'', ',', '!', ':', ';', '(', ')', '[', ']', '…', '/', '"', '+', '=', '^', '`', '|', '#', '~', '&', '<', '>', '*', '%', '£', '¨', '§', 'µ', '{', '}', '¤', '$', '€'], '', $text);
+        //Put the words into an array of words.
+        $Words = explode(' ', mb_strtolower($text, 'UTF-8'));
         //Generate the tags
         return $this->simulation->generateThemes($Words, $env);
         //Return the tags

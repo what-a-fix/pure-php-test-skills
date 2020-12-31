@@ -22,25 +22,25 @@ interface WordInterface
     /**
      * Undocumented function.
      */
-    public function getPlurial(): string;
+    public function getPlural(): string;
 
     /**
      * Undocumented function.
      */
-    public function setPlurial(string $plurial): void;
+    public function setPlural(string $plural): void;
 
     /**
      * Undocumented function.
      */
-    public function getPlurialPositionMinus(): int;
+    public function getPluralPositionMinus(): int;
 
     /**
      * Undocumented function.
      */
-    public function setPlurialPositionMinus(int $plurialPositionMinus): void;
+    public function setPluralPositionMinus(int $pluralPositionMinus): void;
 
     /**
      * Undocumented function.
      */
-    public function getPlurialGenerated(): string;
+    public function getPluralGenerated(): string;
 }

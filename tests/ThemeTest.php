@@ -36,12 +36,12 @@ class ThemeTest extends TestCase
 
         $word1 = new Word();
         $word1->setWordName('patate');
-        $word1->setPlurial('s');
-        $word1->setPlurialPositionMinus(0);
+        $word1->setPlural('s');
+        $word1->setPluralPositionMinus(0);
         $word2 = new Word();
         $word2->setWordName('patate');
-        $word2->setPlurial('s');
-        $word2->setPlurialPositionMinus(0);
+        $word2->setPlural('s');
+        $word2->setPluralPositionMinus(0);
 
         $theme->setWords([$word1, $word1]);
         $theme->setForce(3.0);
@@ -58,8 +58,8 @@ class ThemeTest extends TestCase
         //Get the theme name after the generation
 
         $this->assertSame('chien', $generation->getWords()[0]->getWordName());
-        $this->assertSame('s', $generation->getWords()[0]->getPlurial());
-        $this->assertSame(0, $generation->getWords()[0]->getPlurialPositionMinus());
+        $this->assertSame('s', $generation->getWords()[0]->getPlural());
+        $this->assertSame(0, $generation->getWords()[0]->getPluralPositionMinus());
 
         $this->assertSame('animaux', $generation->getThemeName());
 

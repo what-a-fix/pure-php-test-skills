@@ -78,8 +78,8 @@ class Themes implements ThemesInterface
 
             $word = new Word();
             $word->setWordName($values[0]);
-            $word->setPlurial($values[1]);
-            $word->setPlurialPositionMinus(intval($values[2]));
+            $word->setPlural($values[1]);
+            $word->setPluralPositionMinus(intval($values[2]));
 
             array_push($this->words, $word/*mb_strtolower($word->nodeValue, 'UTF-8')*/);
         }

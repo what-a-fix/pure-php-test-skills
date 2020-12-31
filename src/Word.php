@@ -13,9 +13,9 @@ class Word implements WordInterface
 {
     private string $wordName;
 
-    private string $plurial;
+    private string $plural;
 
-    private int $plurialPositionMinus;
+    private int $pluralPositionMinus;
 
     public function setWordName(string $wordName): void
     {
@@ -27,38 +27,38 @@ class Word implements WordInterface
         return $this->wordName;
     }
 
-    public function getPlurial(): string
+    public function getPlural(): string
     {
-        return $this->plurial;
+        return $this->plural;
     }
 
-    public function setPlurial(string $plurial): void
+    public function setPlural(string $plural): void
     {
-        $this->plurial = $plurial;
+        $this->plural = $plural;
     }
 
-    public function getPlurialPositionMinus(): int
+    public function getPluralPositionMinus(): int
     {
-        return $this->plurialPositionMinus;
+        return $this->pluralPositionMinus;
     }
 
-    public function setPlurialPositionMinus(int $plurialPositionMinus): void
+    public function setPluralPositionMinus(int $pluralPositionMinus): void
     {
-        $this->plurialPositionMinus = $plurialPositionMinus;
+        $this->pluralPositionMinus = $pluralPositionMinus;
     }
 
-    public function getPlurialGenerated(): string
+    public function getPluralGenerated(): string
     {
-        if (0 == $this->getPlurialPositionMinus()) {
-            if ('' !== $this->getPlurial()) {
+        if (0 == $this->getPluralPositionMinus()) {
+            if ('' !== $this->getPlural()) {
                 //ex: 'patate' will return 'patates'.
-                return $this->getWordName().$this->getPlurial();
+                return $this->getWordName().$this->getPlural();
             }
 
             return '';
         }
 
         //ex substr_replace('animal','ux',-1) will return 'animaux'.
-        return substr_replace($this->getWordName(), $this->getPlurial(), $this->getPlurialPositionMinus());
+        return substr_replace($this->getWordName(), $this->getPlural(), $this->getPluralPositionMinus());
     }
 }

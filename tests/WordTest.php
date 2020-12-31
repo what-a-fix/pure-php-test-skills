@@ -32,23 +32,23 @@ class WordTest extends TestCase
         //ex: 'patate' will return 'patates'.
         $word1 = $this->word;
         $word1->setWordName('patate');
-        $word1->setPlurial('s');
-        $word1->setPlurialPositionMinus(0);
+        $word1->setPlural('s');
+        $word1->setPluralPositionMinus(0);
         $this->assertEquals('patate', $word1->getWordName());
-        $this->assertEquals('s', $word1->getPlurial());
-        $this->assertEquals(0, $word1->getPlurialPositionMinus());
+        $this->assertEquals('s', $word1->getPlural());
+        $this->assertEquals(0, $word1->getPluralPositionMinus());
 
-        $this->assertEquals('patates', $word1->getPlurialGenerated());
+        $this->assertEquals('patates', $word1->getPluralGenerated());
 
         //ex substr_replace('animal','ux',-1) will return 'animaux'.
         $word2 = $this->word;
         $word2->setWordName('animal');
-        $word2->setPlurial('ux');
-        $word2->setPlurialPositionMinus(-1);
+        $word2->setPlural('ux');
+        $word2->setPluralPositionMinus(-1);
         $this->assertEquals('animal', $word2->getWordName());
-        $this->assertEquals('ux', $word2->getPlurial());
-        $this->assertEquals(-1, $word2->getPlurialPositionMinus());
+        $this->assertEquals('ux', $word2->getPlural());
+        $this->assertEquals(-1, $word2->getPluralPositionMinus());
 
-        $this->assertEquals('animaux', $word2->getPlurialGenerated());
+        $this->assertEquals('animaux', $word2->getPluralGenerated());
     }
 }
