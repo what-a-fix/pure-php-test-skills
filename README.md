@@ -1,54 +1,65 @@
-# Let's try to do a light PHP library
+# Light PHP library
 
-## Specifications
+## How it works
 
-- The library should solve this specific problem : tagging a text with specific attributes according to it's content.
+  - The method getTags() in the class TextTagger.php is the entry point of the Sentence. **It will output one tag (called Theme in the project) or many tags in an array depending on the keywords of the sentence.**
 
-## At your disposal to start the project
+  - The others methods are described in the Interfaces.
 
-- [x] Interface that define the public library API
+  - The tests are using separate xml files to avoid any conflict, tests methods require a parameter $env="test" to load the correct xml folder.
 
-## What we expect
 
-- [ ] A functional library of course :)
+## Configure Data
 
-- [ ] The library MUST be tested, so you have to provide unit testing series in the project
+  - The data can be added by creating a xml file in the themes folder, it is preferable that the name of the file is the same as the theme tag inside.
 
-## I don't really understand specs !
+  - Then add your words for the theme.
 
-Ok, let me show you an example :
+  - Configure plural words. Exemple:
+    - "**patate**" will have position at **0** with a **s**, it will give us **patates**.
+      -     <word><text>patate</text><pluriel>s</pluriel><position>0</position></word>
+    - "**animal**" will have position at **-1** with **ux**, it will give us **animaux**.
+      -     <word><text>animal</text><pluriel>ux</pluriel><position>-1</position></word>
 
-- Let's say we've got two text (french text) :
+  - The xml files are auto loaded so no need to declare them inside the code.
 
-  - 1 : Cette après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade.
-  - 2 : Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.
+## Input
 
-- So, tags returned for sentence 1 should be something like : 
+  - 1 : Hier je suis allé au parc avec mon ordinateur portable, ainsi que mes chiens et mon chat.
+  - 2 : Internet et le HTML sont vraiment formidables! C'est fou comment le web a révolutionné le monde.
 
-```php
-[
-    'family',
-    'walk',
-];
-```
+## Output
 
-- And tags for sentence 2 should be something like : 
+- Tags returned for sentence 1 : 
 
-```php
-[
-    'leak',
-    'bathroom',
-];
-```
+  ```php
+  [
+      'informatique',
+      'animaux',
+  ];
+  ```
+- *matched words are:*
+**parc**, **ordinateur** for "informatique",
+**chiens** and **chat** for "animaux"
 
-This is a proof of concept , you don't have to create the whole scope for any kind of thematics tag. Keep focus about one or two thematics, and make it works and detect well...
+- Tags returned for sentence 2 : 
 
-## How to submit ?
+  ```php
+  [
+      'informatique'
+  ];
+  ```
+- *matched words are:*
+**Internet**, **HTML**, **web** for "informatique"
 
-To introduce your project, please start by forking this repo and submit a pull request when you think it is OK.
+## Run tests
+- `vendor/bin/phpunit --color=always tests` in the project directory.
 
-Please do not forget to write a README other than this one, fill it with any information you feel is relevant.
+## Possible improvements
+  - Better XML
+  - Verbs
+  - Ignore accents
+  - Find closest word after typing error (ex: Ord**o**nateur instead of Ordinateur)
+## Contact
 
-## Need extra information ? Questions about the project ? ...
-
-For any further question, contact me by email - 2m@whatafix.com
+E-mail: lantranbaptiste@gmail.com
