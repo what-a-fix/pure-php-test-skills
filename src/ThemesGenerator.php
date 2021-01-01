@@ -12,13 +12,6 @@ use Whatafix\TextTagger\Contracts\ThemesGeneratorInterface;
 
 class ThemesGenerator implements ThemesGeneratorInterface
 {
-    private Accuracy $accuracy;
-
-    public function __construct()
-    {
-        $this->accuracy = new Accuracy();
-    }
-
     /**
      * Generate theme(s) for a given list of words.
      */
@@ -40,58 +33,29 @@ class ThemesGenerator implements ThemesGeneratorInterface
                 //We generate the object with the data filled in the XML file.
                 $Theme->generateDataFromXML($path.$file->getFilename());
 
+                $Theme = $Theme->matches($words);
+
                 //We place every theme in an array
                 array_push($Themes, $Theme);
             }
         }
 
-        //For each word of the text
-        foreach ($words as $word) {
-            //For each theme
-            foreach ($Themes as $theme) {
-                //We retrieve every word from the theme
-                $themeWords = $theme->getWords();
-                //for each word in the theme
-                foreach ($themeWords as $themeWord) {
-                    //If the current text's word matches the current theme word
-
-                    if ($word == $themeWord->getWordName() || $word == $themeWord->getPluralGenerated()) {
-                        //return [$themeWord->getPluralGenerated()];
-                        //Get the current force
-                        $currentThemeForce = $theme->getForce();
-
-                        //We add 1 to the current theme force
-                        $theme->setForce($currentThemeForce + 1);
-                    }
-                }
-            }
-        }
-
-        return $this->getThemesByAccuracy($Themes);
+        return $this->getMostMatchesThemes($Themes);
     }
 
-    private function getThemesByAccuracy(array $Themes): array
+    private function getMostMatchesThemes(array $Themes): array
     {
         //Sort the "Themes" array on the attribute force to get the strongest force at the end of the array and the weakest force at the beginning.
         usort($Themes, function ($a, $b) {
-            return $a->getForce() <=> $b->getForce();
+            return $a[1] <=> $b[1];
         });
 
         $strongestTheme = end($Themes);
-        if ($strongestTheme instanceof Themes) {
-            $strongestTheme = $strongestTheme->getForce();
+        if ($strongestTheme[0] instanceof Themes) {
+            $strongestTheme = $strongestTheme[1];
         }
 
-        //Eventually return the accuracy
-        if ($strongestTheme >= $this->accuracy::ACCURACY_HIGH) {
-            return $this->getSameForceTags($Themes, $strongestTheme);
-        }
-
-        if ($strongestTheme === $this->accuracy::ACCURACY_MEDIUM) {
-            return $this->getSameForceTags($Themes, $strongestTheme);
-        }
-
-        if ($strongestTheme === $this->accuracy::ACCURACY_LOW) {
+        if ($strongestTheme > 0) {
             return $this->getSameForceTags($Themes, $strongestTheme);
         }
 
@@ -99,20 +63,21 @@ class ThemesGenerator implements ThemesGeneratorInterface
     }
 
     //To find if there is themes with the same force
-    private function getSameForceTags(array $Themes, float $strongestTheme): array
+    private function getSameForceTags(array $Themes, int $strongestTheme): array
     {
         $themesWithSameForce = 0;
         foreach ($Themes as $theme) {
-            if ($theme->getForce() === $strongestTheme) {
+            if ($theme[1] === $strongestTheme) {
                 ++$themesWithSameForce;
             }
         }
+
         //All the Themes with the same number of words matched
         $finalArray = array_slice($Themes, -$themesWithSameForce, $themesWithSameForce, true);
 
         $tags = [];
         foreach ($finalArray as $Theme) {
-            array_push($tags, $Theme->getThemeName());
+            array_push($tags, $Theme[0]->getThemeName());
         }
 
         return $tags;

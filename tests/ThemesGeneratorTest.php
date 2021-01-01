@@ -8,7 +8,6 @@
 namespace Whatafix\TextTagger\Test;
 
 use PHPUnit\Framework\TestCase;
-use Whatafix\TextTagger\Themes;
 use Whatafix\TextTagger\ThemesGenerator;
 
 /**
@@ -30,20 +29,20 @@ class ThemesGeneratorTest extends TestCase
 
     public function testThemeGeneration()
     {
-        //ACCURACY_HIGH
-        $high = $this->themesGenerator->generateThemes(['Internet', 'et', 'le', 'HTML', 'sont', 'vraiment', 'formidables', 'C\'est', 'fou', 'comment', 'le', 'web', 'a', 'révolutionné', 'le', 'monde'], 'test');
-        $this->assertContains('informatique', $high);
-
-        //ACCURACY_HIGH with Plural nouns
+        //Test high related keywords (Plural words)
         $high = $this->themesGenerator->generateThemes(['chiens', 'chats', 'éléphants'], 'test');
         $this->assertContains('animaux', $high);
 
+        //Test few related keywords
+        $high = $this->themesGenerator->generateThemes(['Internet', 'et', 'le', 'HTML', 'sont', 'vraiment', 'formidables', 'C\'est', 'fou', 'comment', 'le', 'web', 'a', 'révolutionné', 'le', 'monde'], 'test');
+        $this->assertContains('informatique', $high);
+
+        //Test medium related keywords
         $medium = $this->themesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test');
-        //ACCURACY_HIGH with Plural hemesGenerator->generateThemes(['Hier', 'je', 'suis', 'allé', 'au', 'parc', 'avec', 'mon', 'ordinateur', 'portable', 'ainsi', 'que', 'mon', 'chien', 'et', 'mon', 'chat'], 'test');
         $this->assertContains('animaux', $medium);
         $this->assertContains('informatique', $medium);
 
-        //ACCURACY_LOW
+        //Test few related keywords
         $low = $this->themesGenerator->generateThemes(['J\'ai', 'vu', 'un', 'chat', 'assis', 'un', 'canapé', 'sur', 'internet'], 'test');
         $this->assertContains('animaux', $low);
         $this->assertContains('habitation', $low);
@@ -52,25 +51,4 @@ class ThemesGeneratorTest extends TestCase
         //No keyword found
         $this->assertSame([], $this->themesGenerator->generateThemes(['Il', 'est', 'impossible', 'de', 'voler'], 'test'));
     }
-
-    /*
-    public function testGetThemesByAccuracy()
-    {
-        $ThemeAnimaux=New Themes();
-        $ThemeAnimaux->setThemeName('animaux');
-        $ThemeAnimaux->setWords(['lapin','girafe','poulet','coq','chêvre']);
-        $ThemeAnimaux->setForce(2);
-
-        $ThemeInformatique=New Themes();
-        $ThemeInformatique->setThemeName('informatique');
-        $ThemeInformatique->setWords(['ordinateur','pc','téléphone','internet','clavier']);
-        $ThemeInformatique->setForce(2);
-
-        $this->assertSame('toto',$this->themesGenerator->getThemesByAccuracy([$ThemeAnimaux,$ThemeInformatique],2.0));
-    }
-
-    public function testGetSameForceTags()
-    {
-
-    }*/
 }

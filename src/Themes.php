@@ -16,11 +16,6 @@ class Themes implements ThemesInterface
 
     private array $words;
 
-    /**
-     * Used to compare every theme and find the one that matches the most words, 'force' will be 3 if it matches 3 words from a theme.
-     */
-    private float $force;
-
     public function __construct()
     {
         $this->words = [];
@@ -41,16 +36,6 @@ class Themes implements ThemesInterface
         $this->words = $words;
     }
 
-    public function getForce(): float
-    {
-        return $this->force;
-    }
-
-    public function setForce(float $force): void
-    {
-        $this->force = $force;
-    }
-
     public function setThemeName(string $filename): void
     {
         $this->themeName = $filename;
@@ -58,8 +43,6 @@ class Themes implements ThemesInterface
 
     public function generateDataFromXML(string $filename): self
     {
-        $this->force = 0;
-
         $xmlDoc = new DOMDocument('1.0', 'utf-8');
         $xmlDoc->load($filename);
 
@@ -85,5 +68,24 @@ class Themes implements ThemesInterface
         }
 
         return $this;
+    }
+
+    public function matches(array $words): array
+    {
+        $currentForce = 0;
+
+        foreach ($words as $word) {
+            $themeWords = $this->getWords();
+
+            //for each word in the theme
+            foreach ($themeWords as $themeWord) {
+                //If the current text's word matches the current theme word
+                if ($word == $themeWord->getWordName() || $word == $themeWord->getPluralGenerated()) {
+                    $currentForce = $currentForce + 1;
+                }
+            }
+        }
+
+        return [$this, $currentForce];
     }
 }

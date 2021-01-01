@@ -29,18 +29,18 @@ class TextTaggerTest extends TestCase
 
     public function testTextTaggerResponse()
     {
-        //ACCURACY_LOW
+        //Test few related keywords
         $low = $this->textTagger->getTags('J\'ai vu un chat assis sur un canapé sur internet', 'test');
         $this->assertContains('animaux', $low);
         $this->assertContains('habitation', $low);
         $this->assertContains('informatique', $low);
 
-        //ACCURACY_MEDIUM
+        //Test medium related keywords
         $medium = $this->textTagger->getTags('Hier je suis allé au parc avec mon ordinateur portable ainsi que mon chien et mon chat', 'test');
         $this->assertContains('animaux', $medium);
         $this->assertContains('informatique', $medium);
 
-        //ACCURACY_HIGH
+        //Test high related keywords
         $high = $this->textTagger->getTags('Internet et le HTML sont vraiment formidables! C\'est fou comment le web a révolutionné le monde.', 'test');
         $this->assertContains('informatique', $high);
 

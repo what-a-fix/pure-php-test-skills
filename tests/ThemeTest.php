@@ -43,12 +43,14 @@ class ThemeTest extends TestCase
         $word2->setPlural('s');
         $word2->setPluralPositionMinus(0);
 
-        $theme->setWords([$word1, $word1]);
-        $theme->setForce(3.0);
+        $theme->setWords([$word1, $word2]);
 
         $this->assertEquals('animaux', $theme->getThemeName());
         $this->assertCount(2, $theme->getWords());
-        $this->assertEquals(3.0, $theme->getForce());
+
+        //matches() method, 2 words are matching from 'Animaux' XML file
+        $theme->generateDataFromXML(__DIR__.'/themes/testAnimaux.xml');
+        $this->assertSame([$theme, 2], $theme->matches(['chiens', 'chats']));
     }
 
     public function testGenerateDataFromXML()
@@ -72,11 +74,7 @@ class ThemeTest extends TestCase
         $generation->setThemeName('Animaux');
         $this->assertEquals($generation->getThemeName(), 'Animaux');
 
-        //Test the setter and getter of force
-        $generation->setForce(1.0);
-        $this->assertEquals($generation->getForce(), 1.0);
-
-        //Test the setter and getter for force
+        //Test the setter and getter for words
         $generation->setWords(['lapin', 'girafe', 'poulet', 'coq', 'chêvre']);
         $this->assertEquals($generation->getWords(), ['lapin', 'girafe', 'poulet', 'coq', 'chêvre']);
 
