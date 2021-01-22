@@ -9,34 +9,35 @@ namespace Whatafix\TextTagger;
 
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
-
 /**
  * Class TextTaggerClass.
  */
 class TextTaggerClass implements TextTaggerInterface
 {
-
-    /**
-     * @var array
-     */
-    private $scopeTags;
-
-    public function __construct()
-    {
-        $this->scopeTags = [
-            'bathroom' => ['bain','baignoire','toilette','douche','lavabo'],
-            'leak'=> ['fuite','tuyau','bonde'],
-            'family' => ['parent','enfant','fils','frère','soeur','père','mère','cousin'],
-            'walk' => ['ballade','promenade','randonnée','tour','forêt'],
-            'cinema' => ['cinéma','film','affiche','acteur','actrice'],
-            ];
-    }
+    const SCOPE_TAGS = [
+        'bathroom' => ['bain', 'baignoire', 'toilette', 'douche', 'lavabo'],
+        'leak' => ['fuite', 'tuyau', 'bonde'],
+        'family' => ['parent', 'enfant', 'fils', 'frère', 'soeur', 'père', 'mère', 'cousin'],
+        'walk' => ['ballade', 'promenade', 'randonnée', 'tour', 'forêt'],
+        'cinema' => ['cinéma', 'film', 'affiche', 'acteur', 'actrice'],
+        ];
 
     /**
      * {@inheritdoc}
      */
     public function getTags(string $text): array
     {
-        return [];
+        $tags = [];
+        $words = explode(' ', $text);
+        foreach ($words as $word) {
+            foreach (self::SCOPE_TAGS as $tag => $scopeWords) {
+                foreach ($scopeWords as $scopeWord) {
+                    if ($scopeWord === $word) {
+                        $tags[] = $tag;
+                    }
+                }
+            }
+        }
+        return $tags;
     }
 }
