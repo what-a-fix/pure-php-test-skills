@@ -30,17 +30,17 @@ as an example :
 ```
 ## description of my attempt as a solution
 
-- create of a new class : TextTaggerClass 
+- create a new class : TextTaggerClass 
 
-- define a constant of class which is an array associating each different theme tag with an array of related words.
+- define a constant of class : SCOPE_TAG which is an array associating each different theme tag with an array of related words.
 
 - In the getTags method, different operations are performed in that order :
     - remove punctuation (preg_replace)
     - split the text into an array of words (explode)
     - for each word (3 embedding loops) :
-         - compare it with each related word of each tag theme 
-         - count each time a tag word has matched and stock that data into a new associative array
-    - sort this new array by frequency of tag in descending order (arsort)
+         - compare it with each related word of each theme tag 
+         - count each time a related word to one specific tag has matched and stock that data into a new associative array
+    - sort this new array by frequency of matched tag in descending order (arsort)
     - keep the 2 more frequently matched tags and return them as an array
     
  
