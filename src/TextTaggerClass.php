@@ -27,18 +27,19 @@ class TextTaggerClass implements TextTaggerInterface
      */
     public function getTags(string $text): array
     {
-        $text = preg_replace("/(?!['-])\p{P}/u", "", $text);
-        $tags = [];
+        $text = preg_replace("/(?!['-])\\p{P}/u", '', $text);
         $words = explode(' ', $text);
+        $tagFrequencies = [];
         foreach ($words as $word) {
             foreach (self::SCOPE_TAGS as $tag => $scopeWords) {
                 foreach ($scopeWords as $scopeWord) {
                     if ($scopeWord === $word) {
-                        $tags[] = $tag;
+                        $tagFrequencies["$tag"] += 1;
                     }
                 }
             }
         }
-        return $words;
+
+        return $tagFrequencies;
     }
 }
