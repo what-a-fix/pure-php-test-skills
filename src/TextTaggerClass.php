@@ -27,6 +27,7 @@ class TextTaggerClass implements TextTaggerInterface
      */
     public function getTags(string $text): array
     {
+        $text = preg_replace("/(?!['-])\p{P}/u", "", $text);
         $tags = [];
         $words = explode(' ', $text);
         foreach ($words as $word) {
@@ -38,6 +39,6 @@ class TextTaggerClass implements TextTaggerInterface
                 }
             }
         }
-        return $tags;
+        return $words;
     }
 }
