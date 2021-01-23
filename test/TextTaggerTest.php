@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * @author Dev applicant
  * @link https://github.com/what-a-fix/pure-php-test-skills
@@ -22,15 +23,6 @@ class TextTaggerTest extends TestCase
             __DIR__.'/../src/TextTaggerClass.php',
             'You should have a /src/TextTaggerClass.php file'
         );
-    }
-
-    /**
-     * @depends testTextTaggerFileExists
-     */
-    public function testTextTaggerClassExists(): void
-    {
-        require_once __DIR__.'/../src/TextTaggerClass.php';
-        $this->assertTrue(class_exists('TextTaggerClass'), 'You should have a TextTaggerClass class');
     }
 
     /**
@@ -85,7 +77,7 @@ class TextTaggerTest extends TestCase
                 'leak',
                 'bathroom',
             ],
-        $atm->getTags('Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.'),
+            $atm->getTags('Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.'),
             'given a text about bathroom and  the methosd should return \'family\' and \'walk\''
         );
     }
@@ -101,8 +93,8 @@ class TextTaggerTest extends TestCase
                 'cinema',
                 'family',
             ],
-        $atm->getTags('Hier je suis allée au cinéma avec ma soeur, c\'était un beau film'),
-            'given a text about family and cinema the methosd should return \'family\' and \'cinema\''
+            $atm->getTags('Hier je suis allée au cinéma avec ma soeur, c\'était un beau film'),
+            'given a text about family and cinema the method should return \'family\' and \'cinema\''
         );
     }
 }

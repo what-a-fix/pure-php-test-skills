@@ -33,7 +33,7 @@ class TextTaggerClass implements TextTaggerInterface
         foreach ($words as $word) {
             foreach (self::SCOPE_TAGS as $tag => $scopeWords) {
                 foreach ($scopeWords as $scopeWord) {
-                    if ($scopeWord === $word) {
+                    if (str_contains($word, $scopeWord)) {
                         if (!array_key_exists($tag, $tagFrequencies)) {
                             $tagFrequencies[$tag] = 1;
                         } else {
@@ -45,6 +45,7 @@ class TextTaggerClass implements TextTaggerInterface
         }
         arsort($tagFrequencies);
         $tags = array_keys($tagFrequencies);
-        return $tags;
+
+        return array_slice($tags, 0, 2);
     }
 }
