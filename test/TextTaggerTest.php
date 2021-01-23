@@ -98,8 +98,8 @@ class TextTaggerTest extends TestCase
         $atm = new TextTaggerClass();
         $this->assertSame(
             [
-                'family',
                 'cinema',
+                'family',
             ],
         $atm->getTags('Hier je suis allée au cinéma avec ma soeur, c\'était un beau film'),
             'given a text about family and cinema the methosd should return \'family\' and \'cinema\''
