@@ -15,6 +15,14 @@ final class TextTaggerTest extends TestCase
         $this->textTagger = new TextTagger();
     }
 
+    public function testTextTaggerGetTagsNoTags(): void
+    {
+        $string = "Aaa a aaaa a a aa aaaa a aaaa aa aaaaaaa a aa aaa aaa aaa aaaaa aaa a aaaaa aa a aa";
+        $expectedResult = [];
+        $tags = $this->textTagger->getTags($string);
+        $this->assertTrue(empty(array_diff($expectedResult, $tags)), 'Expected : ["' . implode('", "', $expectedResult) . '"]' . PHP_EOL . 'Returned : ["' . implode('", "', $tags) . '"]');
+    }
+
     public function testTextTaggerGetTagsSimple1(): void
     {
         $string = "Cette après-midi je suis allé manger une glace avec mes parents au parc. 
