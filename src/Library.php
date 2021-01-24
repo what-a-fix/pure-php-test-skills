@@ -1,23 +1,25 @@
 <?php
 
 /**
- * @author Dev applicant
- * @link https://github.com/what-a-fix/pure-php-test-skills
+ * @author Claire V
+ * @link https://github.com/ClaireV38/pure-php-test-skills
  */
 
 namespace Whatafix\TextTagger;
 
+require __DIR__.'/../vendor/autoload.php';
+
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
 /**
- * Class TextTaggerClass.
+ * Class Library.
  */
-class TextTaggerClass implements TextTaggerInterface
+class Library implements TextTaggerInterface
 {
     const SCOPE_TAGS = [
         'bathroom' => ['bain', 'baignoire', 'toilette', 'douche', 'lavabo'],
         'leak' => ['fuite', 'tuyau', 'bonde'],
-        'family' => ['parent', 'enfant', 'fils', 'frère', 'soeur', 'père', 'mère', 'cousin'],
+        'family' => ['parent', 'enfant', 'fils', 'fille', 'frère', 'soeur', 'père', 'mère', 'cousin'],
         'walk' => ['ballade', 'promenade', 'randonnée', 'tour', 'forêt'],
         'cinema' => ['cinéma', 'film', 'affiche', 'acteur', 'actrice'],
         ];
