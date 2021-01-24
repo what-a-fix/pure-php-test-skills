@@ -40,6 +40,7 @@ class TextTagger implements TextTaggerInterface
                 }
             }
         }
+        $tags = array_unique($tags);
         sort($tags);
         return $tags;
     }
