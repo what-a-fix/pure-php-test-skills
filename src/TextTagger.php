@@ -1,6 +1,6 @@
 <?php
 
-namespace Whatafix\TextTagger\Whatafix;
+namespace Whatafix\TextTagger;
 
 use Whatafix\TextTagger\Contracts\TextTaggerInterface;
 
@@ -39,7 +39,7 @@ class TextTagger implements TextTaggerInterface
     {
         $result = [];
         if (empty($text)) {
-            return ["L'input ne peut être vide"];
+            return ['L\'input ne peut pas être vide'];
         }
         foreach (self::TAGS as $tag => $keywords) {
             foreach ($keywords as $keyword) {
