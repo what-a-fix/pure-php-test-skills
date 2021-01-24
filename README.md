@@ -30,7 +30,7 @@ as an example :
 ```
 ## description of my attempt as a solution
 
-- create a new class : TextTaggerClass 
+- create a new class : Library 
 
 - define a constant of class : SCOPE_TAGS which is an array associating each different theme tag with an array of related words.
 
