@@ -27,7 +27,7 @@ final class TextTaggerTest extends TestCase
     public function testTextTaggerGetTagsSimple2(): void
     {
         $string = "Une fuite dans mon appartement au niveau de ma baignoire, on dirait que cela vient de la bonde.";
-        $expectedResult = ["leak", "bathroom"];
+        $expectedResult = ["bathroom", "leak"];
         $tags = $this->textTagger->getTags($string);
         $this->assertTrue(empty(array_diff($expectedResult, $tags)), 'Expected : ["' . implode('", "', $expectedResult) . '"]' . PHP_EOL . 'Returned : ["' . implode('", "', $tags) . '"]');
     }

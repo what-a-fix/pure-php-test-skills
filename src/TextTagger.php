@@ -32,6 +32,15 @@ class TextTagger implements TextTaggerInterface
 
     public function getTags(string $text): array
     {
-        return ['family', 'walk'];
+        $tags = [];
+        foreach (self::TAGS as $tag => $keywords) {
+            foreach ($keywords as $keyword) {
+                if (strpos($text, $keyword)) {
+                    $tags[] = $tag;
+                }
+            }
+        }
+        sort($tags);
+        return $tags;
     }
 }
