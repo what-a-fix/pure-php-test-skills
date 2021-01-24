@@ -52,3 +52,11 @@ Please do not forget to write a README other than this one, fill it with any inf
 ## Need extra information ? Questions about the project ? ...
 
 For any further question, contact me by email - 2m@whatafix.com
+
+# My solution
+
+For now, I just made this quick, functional and simple text-tagger. 
+There's a lot of improvements to be done, but for this specific case it works fine.
+
+The textTagger method will scan the provided text for certain keywords, and when one is encountered, the associate tag will be added.
+We then keep only unique tags and sort the array before returning it.
