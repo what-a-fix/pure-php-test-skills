@@ -1,9 +1,9 @@
 <?php
 
-namespace Test\Whatafix;
+namespace Whatafix\TextTagger\Test;
 
-use Whatafix\TextTagger\Whatafix\TextTagger;
 use PHPUnit\Framework\TestCase;
+use Whatafix\TextTagger\TextTagger;
 
 class TextTaggerTest extends TestCase
 {
@@ -15,16 +15,17 @@ class TextTaggerTest extends TestCase
         $this->textTagger = new TextTagger();
     }
 
-    public function basicTest()
+    /**
+     * @test
+     */
+    public function testTextTagger(): void
     {
-        $text = "Cette après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade.";
+        $text = "Cet après-midi je suis allé manger une glace avec mes parents au parc. Puis nous avons fait une grande ballade.";
         $result = [
             'family',
             'walk'
         ];
         $tags = $this->textTagger->getTags($text);
-        $this->assertTrue(empty(array_diff($result, $tags)),
-            'Expected : ["' . implode('", "', $result) . '"]' . PHP_EOL .
-            'Returned : ["' . implode('", "', $tags) . '"]');;
+        $this->assertTrue(empty(array_diff($result, $tags)), 'Expected : [' . implode(', ', $result) . ']' . PHP_EOL . 'Returned : ' . implode(', ', $tags) . ']');
     }
 }
