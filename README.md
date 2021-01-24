@@ -52,3 +52,13 @@ Please do not forget to write a README other than this one, fill it with any inf
 ## Need extra information ? Questions about the project ? ...
 
 For any further question, contact me by email - 2m@whatafix.com
+
+## My answer
+
+Here is my answer for this test.
+
+First, i created a constant for my themes and matching keywords, then i resolved the case when the input is empty.
+
+After that i looped in my const to compare occurence in the input with my keywords, if there's a match i pushed the related theme in an array then sort it to return the result.
+
+Hope this will please you and i'll be very excited to discuss about this first shot with you tomorrow !

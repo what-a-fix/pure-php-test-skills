@@ -18,4 +18,5 @@ interface TextTaggerInterface
      * @return string[]
      */
     public function getTags(string $text): array;
+
 }
