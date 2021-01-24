@@ -39,7 +39,7 @@ as an example :
     - split the text into an array of words (explode)
     - for each word (3 embedded loops) :
          - compare it with each related word of each tag theme of SCOPE_TAGS
-         - count each time a tag word has matched and stock that data into a new associative array
+         - count each time a related word to one specific tag has matched and stock that data into a new associative array
     - sort this new array by frequency of tag in descending order (arsort)
     - keep the 2 more frequently matched tags and return them as an array
     

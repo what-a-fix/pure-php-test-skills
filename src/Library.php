@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @author Claire V
- * @link https://github.com/ClaireV38/pure-php-test-skills
+ * @author Dev applicant
+ * @link https://github.com/what-a-fix/pure-php-test-skills
  */
 
 namespace Whatafix\TextTagger;
@@ -29,7 +29,7 @@ class Library implements TextTaggerInterface
      */
     public function getTags(string $text): array
     {
-        $text = preg_replace("/(?!['-])\\p{P}/u", '', $text);
+        $text = preg_replace("/(?:['-])\\p{P}/u", '', $text);
         $words = explode(' ', $text);
         $tagFrequencies = [];
         foreach ($words as $word) {
