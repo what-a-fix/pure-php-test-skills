@@ -52,3 +52,10 @@ Please do not forget to write a README other than this one, fill it with any inf
 ## Need extra information ? Questions about the project ? ...
 
 For any further question, contact me by email - 2m@whatafix.com
+
+## My solution
+
+So basically I start by checking if the sentence is one, 
+I then for each theme check if each word correspond to one of the theme's tag.
+I haven't yet wrote the test but I just changed a few things from what I sent you last time via email so 
+I believe even without test that it should work.
